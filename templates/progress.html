@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster | My Progress</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f1ff;
+            color: #333;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        nav h2 {
+            color: #7657c5;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7657c5;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .heading {
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            color: #6045a8;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-card h3 {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h2 {
+            color: #7657c5;
+            font-size: 30px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #6045a8;
+            margin-bottom: 20px;
+        }
+
+        .subject {
+            margin-bottom: 20px;
+        }
+
+        .subject-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 11px;
+            background: #eee9fa;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: var(--progress);
+            background: #9478df;
+            border-radius: 20px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #777;
+            padding: 25px 10px;
+            line-height: 1.7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f4f1ff;
+            color: #6045a8;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #7657c5;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 5%;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            table {
+                min-width: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>PrepMaster</h2>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <main class="container">
+
+        <div class="heading">
+            <h1>My Learning Progress 📊</h1>
+            <p>
+                Track your mock test performance, monitor your improvement
+                and keep moving towards your dream job.
+            </p>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <h3>Total Tests Attempted</h3>
+                <h2>{{ total_tests }}</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Average Score</h3>
+                <h2>{{ average_score }}%</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Best Score</h3>
+                <h2>{{ best_score }}%</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Subjects Practised</h3>
+                <h2>{{ subjects_practised }}</h2>
+            </div>
+
+        </div>
+
+        <section class="section">
+            <h2>Subject-wise Performance</h2>
+
+            {% if subject_progress %}
+                {% for subject in subject_progress %}
+
+                    <div class="subject">
+
+                        <div class="subject-info">
+                            <span>{{ subject.name }}</span>
+                            <span>{{ subject.average }}%</span>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill"
+                                 style="--progress: {{ subject.average }}%;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                <div class="empty-message">
+                    No mock test results yet.<br>
+                    Take your first mock test to start tracking your progress!
+                </div>
+            {% endif %}
+
+        </section>
+
+        <section class="section">
+            <h2>Recent Mock Test Attempts</h2>
+
+            {% if recent_attempts %}
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for attempt in recent_attempts %}
+                                <tr>
+                                    <td>{{ attempt.subject }}</td>
+                                    <td>
+                                        {{ attempt.score }}/{{ attempt.total_questions }}
+                                    </td>
+                                    <td>{{ attempt.date }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-message">
+                    Your test history will appear here after you submit a mock test.
+                </div>
+            {% endif %}
+
+        </section>
+
+        <a href="{{ url_for('dashboard') }}" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+    </main>
+
+    <footer>
+        © 2026 PrepMaster | Prepare Today, Succeed Tomorrow!
+    </footer>
+
+</body>
+</html>

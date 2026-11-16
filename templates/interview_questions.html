@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster - Interview Questions</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f7f5ff;
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #7865c9, #8b83df);
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 15px 30px;
+            background: linear-gradient(135deg, #e8e2ff, #e1f0ff);
+        }
+
+        .hero h1 {
+            color: #51439b;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .search-box {
+            display: block;
+            width: 85%;
+            max-width: 650px;
+            margin: 25px auto;
+            padding: 14px 18px;
+            border: 2px solid #d8d0f5;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+        }
+
+        .category-menu a {
+            text-decoration: none;
+            background: #eeeaff;
+            color: #55479c;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .content {
+            width: 90%;
+            max-width: 1050px;
+            margin: 30px auto;
+        }
+
+        .category-title {
+            color: #58499e;
+            font-size: 25px;
+            margin: 25px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd5ff;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 13px;
+            box-shadow: 0 3px 12px rgba(80, 65, 140, 0.08);
+            border: 1px solid #eeeaff;
+        }
+
+        .question-card h4 {
+            color: #44377f;
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .question-type {
+            display: inline-block;
+            background: #eeeaff;
+            color: #6553a8;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .question-card p {
+            line-height: 1.7;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .question-card details {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .question-card summary {
+            color: #6553b5;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .explanation {
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .footer {
+            background: #51458e;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .navbar a {
+                margin: 5px;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .content {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🎓 PrepMaster</div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/videos">Video Lessons</a>
+            <a href="/interview-questions">Questions</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>🚀 Interview Preparation Hub</h1>
+        <p>Practice important technical, coding, aptitude and HR interview questions.</p>
+        <p>Learn concepts, understand answers and prepare confidently for placements.</p>
+    </div>
+
+    <input
+        type="text"
+        class="search-box"
+        id="questionSearch"
+        placeholder="🔍 Search interview questions..."
+        onkeyup="searchQuestions()"
+    >
+
+    <div class="category-menu">
+        <a href="#c">C Programming</a>
+        <a href="#python">Python</a>
+        <a href="#java">Java</a>
+        <a href="#sql">SQL & DBMS</a>
+        <a href="#dsa">DSA</a>
+        <a href="#os">Operating Systems</a>
+        <a href="#cn">Computer Networks</a>
+        <a href="#oops">OOP</a>
+        <a href="#hr">HR & Technical</a>
+        <a href="#aptitude">Aptitude</a>
+    </div>
+
+    <main class="content">
+
+        <section class="category-section" id="c">
+            <h2 class="category-title">💻 C Programming Interview Questions</h2>
+
+            <div class="question-card">
+                <span class="question-type">Basic Concept</span>
+                <h4>Q1. What is C programming language?</h4>
+                <p><b>Answer:</b> C is a general-purpose, procedural programming language developed by Dennis Ritchie.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">C is widely used for system programming, operating systems and embedded applications. It provides features such as pointers, functions and structured programming.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Basic Concept</span>
+                <h4>Q2. What is the difference between a compiler and an interpreter?</h4>
+                <p><b>Answer:</b> A compiler translates source code into machine code before execution, while an interpreter executes instructions through an interpretation process.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A compiler generally translates a program before it runs. An interpreter processes the program during execution. C commonly uses a compiler.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q3. What is a pointer in C?</h4>
+                <p><b>Answer:</b> A pointer is a variable that stores the memory address of another variable.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Pointers are useful for dynamic memory allocation, arrays, functions and efficient memory handling. The address-of operator (&amp;) obtains an address, while the dereference operator (*) accesses the value stored at that address.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q4. What is the difference between = and == in C?</h4>
+                <p><b>Answer:</b> The = operator assigns a value, whereas == compares two values.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">For example, x = 10 assigns 10 to x. The expression x == 10 checks whether x is equal to 10 and returns true or false.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q5. What is the difference between an array and a pointer?</h4>
+                <p><b>Answer:</b> An array stores a collection of elements, while a pointer stores a memory address.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">An array has a fixed size after declaration. A pointer can be reassigned to point to different memory locations. Although array names often convert to pointers, arrays and pointers are not the same thing.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Memory Management</span>
+                <h4>Q6. What is dynamic memory allocation in C?</h4>
+                <p><b>Answer:</b> Dynamic memory allocation means allocating memory during program execution.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">C provides functions such as malloc(), calloc(), realloc() and free() for dynamic memory management. These functions are declared in the stdlib.h header file.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q7. What is the difference between malloc() and calloc()?</h4>
+                <p><b>Answer:</b> malloc() allocates a block of memory without initializing it, while calloc() allocates memory for multiple elements and initializes it to zero.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Both functions return a pointer to the allocated memory. The programmer should check whether the returned pointer is NULL before using the memory.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q8. What is the output of the following C statement?</h4>
+                <p><b>Code:</b> printf("%d", 5 + 3 * 2);</p>
+                <p><b>Answer:</b> 11</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Multiplication has higher precedence than addition. Therefore, 3 * 2 is evaluated first, giving 6. Then 5 + 6 gives 11.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q9. What is recursion in C?</h4>
+                <p><b>Answer:</b> Recursion is a process in which a function calls itself.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A recursive function must have a base condition to stop repeated calls. Recursion is commonly used in factorial calculations, tree traversal and mathematical problems.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q10. What is the difference between break and continue?</h4>
+                <p><b>Answer:</b> break terminates the loop, whereas continue skips the current iteration.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The break statement transfers control outside the loop. The continue statement skips the remaining statements in the current iteration and proceeds to the next iteration.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Basic Concept</span>
+                <h4>Q11. What is the difference between local and global variables?</h4>
+                <p><b>Answer:</b> A local variable is declared inside a function or block, while a global variable is declared outside all functions.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A local variable can generally be accessed only within its declared scope. A global variable can be accessed by functions in the same file, subject to its scope and linkage.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Pointer Concept</span>
+                <h4>Q12. What is a NULL pointer?</h4>
+                <p><b>Answer:</b> A NULL pointer is a pointer that does not point to a valid object or function.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">NULL is commonly used to indicate that a pointer has no valid target. A program should not dereference a NULL pointer because doing so causes undefined behavior.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Storage Class</span>
+                <h4>Q13. What is the use of the static keyword in C?</h4>
+                <p><b>Answer:</b> The static keyword controls the lifetime or visibility of variables and functions.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A static local variable retains its value between function calls. A static global variable or function has internal linkage, meaning it is limited to the current source file.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q14. What is a structure in C?</h4>
+                <p><b>Answer:</b> A structure is a user-defined data type that groups variables of different data types under one name.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A structure is declared using the struct keyword. It is useful for representing related information, such as a student's name, roll number and marks.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q15. What is the difference between a structure and a union?</h4>
+                <p><b>Answer:</b> A structure gives separate storage to its members, whereas union members share the same memory location.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">In a structure, multiple members can hold values at the same time. In a union, storing a value in one member affects the shared storage used by the other members.</p>
+                </details>
+            </div>
+            <div class="question-card">
+                <span class="question-type">Storage Classes</span>
+                <h4>Q16. What are storage classes in C?</h4>
+                <p><b>Answer:</b> Storage classes define the scope, lifetime and visibility of variables.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The main storage class specifiers are auto, register, static and extern. They determine how variables are stored and accessed in a program.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q17. What is the difference between call by value and call by reference?</h4>
+                <p><b>Answer:</b> Call by value passes a copy of a value, while passing a pointer allows a function to modify the original variable.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">C uses call by value. Reference-like behavior can be achieved by passing the address of a variable through a pointer. Changes made through that pointer can affect the original variable.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">String Concept</span>
+                <h4>Q18. What is a string in C?</h4>
+                <p><b>Answer:</b> A string is an array of characters terminated by the null character '\0'.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Strings are used to store text. Common string functions such as strlen(), strcpy(), strcat() and strcmp() are available through string.h.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q19. What is the difference between strlen() and sizeof()?</h4>
+                <p><b>Answer:</b> strlen() returns the number of characters in a string before '\0', while sizeof() returns the size in bytes of an object or type.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">For example, for char name[] = "Hello", strlen(name) returns 5, whereas sizeof(name) returns 6 because it includes the null terminator.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Pointer Concept</span>
+                <h4>Q20. What is a void pointer in C?</h4>
+                <p><b>Answer:</b> A void pointer is a generic pointer that can hold the address of an object of any data type.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A void pointer can store different object addresses. It must be converted to an appropriate pointer type before dereferencing in standard C.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Pointer Concept</span>
+                <h4>Q21. What is a dangling pointer?</h4>
+                <p><b>Answer:</b> A dangling pointer refers to memory that is no longer valid for use.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">It may occur when memory is freed or when a pointer refers to a local variable whose lifetime has ended. Using a dangling pointer can cause undefined behavior.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Memory Management</span>
+                <h4>Q22. What is a memory leak in C?</h4>
+                <p><b>Answer:</b> A memory leak occurs when dynamically allocated memory is no longer needed but is not released.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Memory allocated using malloc() or calloc() should be released using free() when it is no longer required. Unreleased memory can increase a program's memory usage.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Memory Management</span>
+                <h4>Q23. Explain malloc(), calloc(), realloc() and free().</h4>
+                <p><b>Answer:</b> These functions are used for dynamic memory allocation and deallocation in C.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">malloc() allocates uninitialized memory. calloc() allocates zero-initialized memory. realloc() changes the size of an allocated block. free() releases dynamically allocated memory.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Functions</span>
+                <h4>Q24. What is a function prototype in C?</h4>
+                <p><b>Answer:</b> A function prototype declares a function's name, return type and parameter types before it is used.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">It helps the compiler check whether a function is called with the correct arguments and return type. Example: int add(int, int);</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Preprocessor</span>
+                <h4>Q25. What is a macro in C?</h4>
+                <p><b>Answer:</b> A macro is a name or code fragment defined using the #define preprocessor directive.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Macros are processed before compilation. They are commonly used for symbolic constants and simple code substitutions. Example: #define PI 3.14</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Header Files</span>
+                <h4>Q26. What is the difference between #include &lt;file.h&gt; and #include "file.h"?</h4>
+                <p><b>Answer:</b> Angle brackets are generally used for system headers, while quotation marks are generally used for local headers.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The compiler searches for headers according to its configured include search paths. Quoted includes generally search the current source file's directory first.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q27. What is the output of the following code?</h4>
+                <p><b>Code:</b> int x = 10; printf("%d", x++);</p>
+                <p><b>Answer:</b> 10</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The post-increment operator uses the current value first and increments the variable afterward. Therefore, the printed value is 10 and x becomes 11.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q28. What is the output of the following code?</h4>
+                <p><b>Code:</b> int x = 10; printf("%d", ++x);</p>
+                <p><b>Answer:</b> 11</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The pre-increment operator increases the value before it is used. Therefore, x becomes 11 and 11 is printed.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q29. What is the difference between i++ and ++i?</h4>
+                <p><b>Answer:</b> i++ is post-increment, while ++i is pre-increment.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Post-increment uses the original value before increasing it. Pre-increment increases the value first and then uses the updated value.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Data Types</span>
+                <h4>Q30. What is an enum in C?</h4>
+                <p><b>Answer:</b> An enum is a user-defined data type consisting of named integer constants.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The enum keyword makes programs easier to read by assigning names to related integer values. Example: enum Day {MON, TUE, WED};</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q31. Can a union contain different data types?</h4>
+                <p><b>Answer:</b> Yes. A union can contain members of different data types, but all members share the same memory.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The size of a union is sufficient to hold its largest member, including any alignment requirements. Typically, only one member's stored value is used at a time.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q32. What is undefined behavior in C?</h4>
+                <p><b>Answer:</b> Undefined behavior means the C standard does not specify what happens when a particular operation is performed.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Examples include accessing an array outside its bounds and dereferencing an invalid pointer. The program may behave unpredictably, so such operations must be avoided.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Keywords</span>
+                <h4>Q33. What is the use of the const keyword in C?</h4>
+                <p><b>Answer:</b> The const keyword declares an object whose value cannot be modified through that const-qualified name.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">It helps protect values from accidental modification. Example: const int age = 20;</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Advanced Concept</span>
+                <h4>Q34. What is a function pointer in C?</h4>
+                <p><b>Answer:</b> A function pointer is a pointer that stores the address of a function.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Function pointers allow functions to be called indirectly. They are useful for callback functions, menu-driven programs and flexible program design.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Memory Management</span>
+                <h4>Q35. What is the difference between stack and heap memory?</h4>
+                <p><b>Answer:</b> Stack memory is commonly used for function calls and automatic local variables, while heap memory is used for dynamic memory allocation.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Stack memory is managed automatically during function execution. Heap memory is managed through functions such as malloc() and free().</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Coding Question</span>
+                <h4>Q36. How can you reverse a string in C?</h4>
+                <p><b>Answer:</b> A string can be reversed by swapping characters from the beginning and end until the middle is reached.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">First find the string length. Then use two positions, one at the beginning and one at the end. Swap the characters and move both positions toward the center.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Coding Question</span>
+                <h4>Q37. How do you check whether a number is prime in C?</h4>
+                <p><b>Answer:</b> A number is prime if it is greater than 1 and has exactly two positive factors: 1 and itself.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Check whether the number is divisible by any integer from 2 up to its square root. If no divisor is found, the number is prime.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q38. What is the output of the following expression?</h4>
+                <p><b>Code:</b> printf("%d", 10 / 3);</p>
+                <p><b>Answer:</b> 3</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Both operands are integers, so integer division is performed. The fractional part is discarded, giving 3.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Header Files</span>
+                <h4>Q39. What is a header file in C?</h4>
+                <p><b>Answer:</b> A header file contains declarations, macros and other information that can be shared between source files.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Header files usually have the .h extension. Examples include stdio.h for input and output declarations and string.h for string functions.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q40. What is the difference between a syntax error and a runtime error?</h4>
+                <p><b>Answer:</b> A syntax error occurs when code violates language rules, while a runtime error occurs during program execution.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A missing semicolon can cause a syntax error. An attempt to divide an integer by zero can cause a runtime error on common C implementations.</p>
+                </details>
+            </div>
+            <div class="category-section" id="python">
+                <h2 class="category-title">🐍 Python Programming Interview Questions</h2>
+
+                <div class="question-card">
+                    <span class="question-type">Basic Concept</span>
+                    <h4>Q41. What is Python?</h4>
+                    <p><b>Answer:</b> Python is a high-level, interpreted, general-purpose programming language.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Python is known for its simple syntax and readability. It is used in web development, automation, data science, artificial intelligence and scripting.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q42. What are the main features of Python?</h4>
+                    <p><b>Answer:</b> Simple syntax, interpreted execution, dynamic typing, portability and a large standard library.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Python supports multiple programming styles and provides many built-in functions. Its libraries make development easier and faster.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q43. Is Python compiled or interpreted?</h4>
+                    <p><b>Answer:</b> Python uses both compilation and interpretation.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">In standard Python implementations, source code is first compiled into bytecode. The Python virtual machine then executes that bytecode.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q44. What is the difference between a list and a tuple?</h4>
+                    <p><b>Answer:</b> A list is mutable, whereas a tuple is immutable.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Lists use square brackets and allow modification after creation. Tuples use parentheses and their elements cannot be reassigned after creation.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q45. What is the difference between == and is in Python?</h4>
+                    <p><b>Answer:</b> == compares values, while is checks object identity.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The equality operator checks whether two objects contain equal values. The identity operator checks whether both references point to the same object.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Basic Concept</span>
+                    <h4>Q46. What are the basic data types in Python?</h4>
+                    <p><b>Answer:</b> int, float, complex, str, bool, list, tuple, set and dict.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Python provides different data types to store numbers, text and collections. The type() function can be used to identify an object's data type.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q47. What is a dictionary in Python?</h4>
+                    <p><b>Answer:</b> A dictionary stores data in key-value pairs.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Dictionaries are written using curly braces. Each key is unique, and values can be accessed using their corresponding keys.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q48. What is the difference between a set and a list?</h4>
+                    <p><b>Answer:</b> A list allows duplicate elements, while a set stores unique elements.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Lists maintain element order and support indexing. Sets do not support positional indexing and are useful for removing duplicates.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Functions</span>
+                    <h4>Q49. What is a function in Python?</h4>
+                    <p><b>Answer:</b> A function is a reusable block of code that performs a specific task.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Functions are defined using the def keyword. They can accept arguments and return results using the return statement.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q50. What is the difference between break, continue and pass?</h4>
+                    <p><b>Answer:</b> break terminates a loop, continue skips the current iteration, and pass does nothing.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">These statements control program execution. break exits the loop completely, continue moves to the next iteration, and pass acts as a placeholder.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q51. What is a class in Python?</h4>
+                    <p><b>Answer:</b> A class is a blueprint used to create objects.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">A class defines attributes and methods. It helps organize related data and functions into a single structure.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q52. What is an object in Python?</h4>
+                    <p><b>Answer:</b> An object is an instance of a class.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">An object has its own data and can use the methods defined by its class. Multiple objects can be created from one class.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q53. What is the __init__() method?</h4>
+                    <p><b>Answer:</b> It is a special method that initializes an object's attributes when the object is created.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The __init__() method is commonly called a constructor. It runs automatically when a new object is instantiated.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Output-Based Question</span>
+                    <h4>Q54. What is the output of the following Python code?</h4>
+                    <p><b>Code:</b> print(2 ** 3)</p>
+                    <p><b>Answer:</b> 8</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The ** operator performs exponentiation. Therefore, 2 ** 3 means 2 multiplied by itself three times, which gives 8.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q55. What is the difference between mutable and immutable objects?</h4>
+                    <p><b>Answer:</b> Mutable objects can be changed after creation, whereas immutable objects cannot be changed.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Lists, dictionaries and sets are mutable. Integers, strings and tuples are examples of immutable objects.</p>
+                    </details>
+                </div>
+            </div>
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q56. What is indentation in Python?</h4>
+                <p><b>Answer:</b> Indentation refers to the spaces at the beginning of a code line used to define a block of code.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Python uses indentation instead of braces to identify blocks inside functions, loops and conditional statements. Incorrect indentation can cause an IndentationError.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Basic Concept</span>
+                <h4>Q57. What is the difference between a variable and a constant in Python?</h4>
+                <p><b>Answer:</b> A variable can be reassigned, while a constant represents a value intended not to change.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Python does not enforce constants directly. By convention, constant names are written in uppercase, such as MAX_SIZE = 100.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q58. What is the difference between append() and extend()?</h4>
+                <p><b>Answer:</b> append() adds one item to a list, while extend() adds elements from an iterable.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">If [1, 2] is extended with [3, 4], the result is [1, 2, 3, 4]. Using append([3, 4]) instead adds the entire list as one nested element.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q59. What is the output of this code?</h4>
+                <p><b>Code:</b> print(10 // 3)</p>
+                <p><b>Answer:</b> 3</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The // operator performs floor division. It returns the quotient rounded down to the nearest integer for positive operands in this example.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q60. What is the output of this code?</h4>
+                <p><b>Code:</b> print("Python" * 2)</p>
+                <p><b>Answer:</b> PythonPython</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The multiplication operator repeats a string the specified number of times. Here, the word Python is repeated twice.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Functions</span>
+                <h4>Q61. What are lambda functions in Python?</h4>
+                <p><b>Answer:</b> A lambda function is a small anonymous function defined using the lambda keyword.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Lambda functions can contain a single expression. Example: square = lambda x: x * x. Calling square(5) returns 25.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Functions</span>
+                <h4>Q62. What is the difference between arguments and parameters?</h4>
+                <p><b>Answer:</b> Parameters are variables in a function definition, while arguments are values passed when calling the function.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">In def add(a, b), a and b are parameters. In add(5, 3), the values 5 and 3 are arguments.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q63. What is exception handling in Python?</h4>
+                <p><b>Answer:</b> Exception handling is a mechanism used to handle runtime errors without abruptly stopping normal program flow.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Python uses try, except, else and finally blocks. They help detect errors, handle exceptions and perform cleanup operations.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q64. What is the difference between a syntax error and an exception?</h4>
+                <p><b>Answer:</b> A syntax error occurs when code violates Python's grammar, while an exception is an error detected during execution.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">A missing colon after an if statement can cause a SyntaxError. Dividing an integer by zero raises a ZeroDivisionError during execution.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">File Handling</span>
+                <h4>Q65. How do you open a file in Python?</h4>
+                <p><b>Answer:</b> The open() function is used to open a file in Python.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Common file modes include r for reading, w for writing, a for appending and b for binary mode. The with statement helps close files automatically.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">File Handling</span>
+                <h4>Q66. What is the difference between read(), readline() and readlines()?</h4>
+                <p><b>Answer:</b> read() reads file content, readline() reads one line, and readlines() returns all lines as a list.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">These methods are available on file objects. The appropriate method depends on whether the program needs the whole file, one line or a list of lines.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Modules</span>
+                <h4>Q67. What is a module in Python?</h4>
+                <p><b>Answer:</b> A module is a Python file containing functions, variables and classes that can be reused in other programs.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Modules help organize code into separate files. They can be included using the import statement. Examples include math, random and datetime.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Modules</span>
+                <h4>Q68. What is a package in Python?</h4>
+                <p><b>Answer:</b> A package is a way to organize related Python modules into a directory structure.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Packages help organize large applications into manageable components. They allow related modules to be grouped under a common namespace.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">OOP Concept</span>
+                <h4>Q69. What is inheritance in Python?</h4>
+                <p><b>Answer:</b> Inheritance allows one class to acquire properties and methods from another class.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The existing class is called the parent or base class, while the new class is called the child or derived class. Inheritance supports code reuse.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">OOP Concept</span>
+                <h4>Q70. What is polymorphism in Python?</h4>
+                <p><b>Answer:</b> Polymorphism allows the same interface or operation to work with objects of different types.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">For example, the len() function can work with strings, lists and tuples. Each object type provides its own behavior for the operation.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">OOP Concept</span>
+                <h4>Q71. What is encapsulation in Python?</h4>
+                <p><b>Answer:</b> Encapsulation is the practice of combining data and methods within a class and controlling access to them.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Python uses naming conventions and properties to manage attribute access. A double underscore prefix triggers name mangling, but it does not provide strict privacy.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q72. What is list comprehension in Python?</h4>
+                <p><b>Answer:</b> List comprehension is a concise way to create a list from an iterable.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">Example: squares = [x*x for x in range(5)]. This creates a list containing the squares of numbers from 0 to 4.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Output-Based Question</span>
+                <h4>Q73. What is the output of this code?</h4>
+                <p><b>Code:</b> print(len([10, 20, 30, 40]))</p>
+                <p><b>Answer:</b> 4</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The len() function returns the number of elements in a collection. This list contains four elements, so the output is 4.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Important Concept</span>
+                <h4>Q74. What is the difference between shallow copy and deep copy?</h4>
+                <p><b>Answer:</b> A shallow copy creates a new outer object but shares references to nested objects, while a deep copy recursively copies nested objects.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">The copy module provides copy.copy() for shallow copying and copy.deepcopy() for deep copying. Deep copying is useful when nested mutable objects must be independent.</p>
+                </details>
+            </div>
+
+            <div class="question-card">
+                <span class="question-type">Frequently Asked</span>
+                <h4>Q75. What is PEP 8 in Python?</h4>
+                <p><b>Answer:</b> PEP 8 is the official style guide for writing readable Python code.</p>
+                <details>
+                    <summary>📖 Read More</summary>
+                    <p class="explanation">It provides recommendations for indentation, naming conventions, spacing and code formatting. Following PEP 8 makes code easier to read and maintain.</p>
+                </details>
+            </div>
+            <div class="category-section" id="java">
+                <h2 class="category-title">☕ Java Programming Interview Questions</h2>
+
+                <div class="question-card">
+                    <span class="question-type">Basic Concept</span>
+                    <h4>Q76. What is Java?</h4>
+                    <p><b>Answer:</b> Java is a high-level, class-based, object-oriented programming language.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Java is widely used for enterprise applications, web development and Android development. It is designed to be portable across supported platforms using the Java Virtual Machine.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q77. What are the main features of Java?</h4>
+                    <p><b>Answer:</b> Object-oriented, platform-independent, secure, robust, portable and multithreaded.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Java provides automatic memory management, exception handling and a rich standard library. These features support the development of reliable applications.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q78. Why is Java called platform-independent?</h4>
+                    <p><b>Answer:</b> Java programs are compiled into bytecode that can run on different platforms with a compatible JVM.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The Java compiler produces bytecode rather than platform-specific machine code. The Java Virtual Machine executes this bytecode on the target system.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q79. What is JVM?</h4>
+                    <p><b>Answer:</b> JVM stands for Java Virtual Machine. It executes Java bytecode.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The JVM loads and verifies classes, manages memory and executes bytecode. It provides the runtime environment for Java applications.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q80. What is the difference between JDK, JRE and JVM?</h4>
+                    <p><b>Answer:</b> JDK provides development tools, JRE provides the runtime environment, and JVM executes bytecode.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">The JDK includes tools such as the Java compiler. The JRE traditionally includes the JVM and libraries needed to run Java applications.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q81. What is a class in Java?</h4>
+                    <p><b>Answer:</b> A class is a blueprint that defines the data and behavior of objects.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">A class contains fields, constructors and methods. Objects are created from classes using the new keyword.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q82. What is an object in Java?</h4>
+                    <p><b>Answer:</b> An object is an instance of a class.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">An object has state represented by fields and behavior represented by methods. Multiple objects can be created from the same class.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q83. What are the four pillars of OOP?</h4>
+                    <p><b>Answer:</b> Encapsulation, inheritance, polymorphism and abstraction.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Encapsulation protects and organizes data, inheritance supports code reuse, polymorphism allows different behaviors through a common interface, and abstraction hides implementation details.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Constructors</span>
+                    <h4>Q84. What is a constructor in Java?</h4>
+                    <p><b>Answer:</b> A constructor is a special class member used to initialize objects.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">A constructor has the same name as its class and does not have a return type. It is invoked when an object is created.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q85. What is the difference between a constructor and a method?</h4>
+                    <p><b>Answer:</b> A constructor initializes an object, while a method performs a specific operation.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Constructors have the same name as the class and no return type. Methods can have any valid name and may return a value or void.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q86. What is method overloading?</h4>
+                    <p><b>Answer:</b> Method overloading means defining multiple methods with the same name but different parameter lists.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Overloaded methods can differ in the number, types or order of parameters. Return type alone cannot distinguish overloaded methods.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q87. What is method overriding?</h4>
+                    <p><b>Answer:</b> Method overriding occurs when a subclass provides its own implementation of an inherited method.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Overriding supports runtime polymorphism. The method that runs depends on the actual object involved in the method call.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q88. What is the difference between overloading and overriding?</h4>
+                    <p><b>Answer:</b> Overloading uses the same method name with different parameters, while overriding redefines an inherited method in a subclass.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Overloading is resolved using the method signature at compile time. Overriding enables runtime method dispatch for instance methods.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">OOP Concept</span>
+                    <h4>Q89. What is inheritance in Java?</h4>
+                    <p><b>Answer:</b> Inheritance allows a class to acquire accessible properties and methods from another class.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Java uses the extends keyword for class inheritance. It helps reuse existing code and establish relationships between classes.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Important Concept</span>
+                    <h4>Q90. Does Java support multiple inheritance?</h4>
+                    <p><b>Answer:</b> Java does not support multiple inheritance through classes, but a class can implement multiple interfaces.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">This design avoids certain ambiguities associated with inheriting implementation from multiple classes. Interfaces provide a way to support multiple types.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Keywords</span>
+                    <h4>Q91. What is the use of the this keyword in Java?</h4>
+                    <p><b>Answer:</b> The this keyword refers to the current object.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">It is commonly used to distinguish instance variables from parameters with the same name. It can also call another constructor in the same class.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Keywords</span>
+                    <h4>Q92. What is the use of the super keyword?</h4>
+                    <p><b>Answer:</b> The super keyword refers to the immediate parent class.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">It can access accessible parent class members and invoke a parent class constructor. A call to super() must be the first statement in a constructor when used explicitly.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Frequently Asked</span>
+                    <h4>Q93. What is the difference between == and equals() in Java?</h4>
+                    <p><b>Answer:</b> == compares primitive values or object references, while equals() checks logical equality when appropriately implemented by a class.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">For objects, == checks whether two references point to the same object. The equals() method can compare the contents of objects, as String does.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Strings</span>
+                    <h4>Q94. Why is String immutable in Java?</h4>
+                    <p><b>Answer:</b> String objects cannot be changed after they are created.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Immutability supports safe sharing, predictable behavior and efficient string pooling. Operations that appear to modify a String create a new String object.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Strings</span>
+                    <h4>Q95. What is the difference between String, StringBuilder and StringBuffer?</h4>
+                    <p><b>Answer:</b> String is immutable, StringBuilder is mutable and not synchronized, while StringBuffer is mutable and synchronized.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">StringBuilder is generally preferred for repeated string modifications in single-threaded code. StringBuffer provides synchronized methods for thread-safe operations.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Keywords</span>
+                    <h4>Q96. What is the use of the static keyword in Java?</h4>
+                    <p><b>Answer:</b> The static keyword makes a member belong to the class rather than to individual objects.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Static variables are shared by instances of the class. Static methods can be called using the class name without creating an object.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Keywords</span>
+                    <h4>Q97. What is the use of the final keyword in Java?</h4>
+                    <p><b>Answer:</b> final can prevent reassignment of variables, overriding of methods and inheritance of classes.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">A final variable can be assigned only once. A final method cannot be overridden, and a final class cannot be extended.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Exception Handling</span>
+                    <h4>Q98. What is exception handling in Java?</h4>
+                    <p><b>Answer:</b> Exception handling is a mechanism for handling abnormal conditions during program execution.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Java provides try, catch, finally, throw and throws for exception handling. It helps programs respond to errors in a controlled way.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Exception Handling</span>
+                    <h4>Q99. What is the difference between checked and unchecked exceptions?</h4>
+                    <p><b>Answer:</b> Checked exceptions are checked by the compiler, while unchecked exceptions are not required to be declared or caught by the compiler.</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">IOException is an example of a checked exception. NullPointerException and ArithmeticException are examples of unchecked exceptions.</p>
+                    </details>
+                </div>
+
+                <div class="question-card">
+                    <span class="question-type">Output-Based Question</span>
+                    <h4>Q100. What is the output of the following Java code?</h4>
+                    <p><b>Code:</b> System.out.println(10 + 20 + "Java");</p>
+                    <p><b>Answer:</b> 30Java</p>
+                    <details>
+                        <summary>📖 Read More</summary>
+                        <p class="explanation">Java evaluates the expression from left to right. First, 10 + 20 produces 30. Then string concatenation produces 30Java.</p>
+                    </details>
+                </div>
+                <div class="category-section" id="cn">
+    <h2 class="category-title">🌐 Computer Networks Interview Questions</h2>
+
+    <div class="question-card">
+        <h4>Q236. What is a computer network?</h4>
+        <p><b>Answer:</b> A computer network is a group of interconnected computers and devices that communicate and share data and resources.</p>
+        <p><b>Explanation:</b> Networks allow users to exchange information, share files, and access shared resources.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q237. What are the main types of computer networks?</h4>
+        <p><b>Answer:</b> PAN, LAN, MAN, and WAN.</p>
+        <p><b>Explanation:</b> These networks are classified based on the geographical area they cover.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q238. What is LAN?</h4>
+        <p><b>Answer:</b> LAN stands for Local Area Network. It connects devices within a small geographical area.</p>
+        <p><b>Explanation:</b> Homes, schools, offices, and laboratories commonly use LANs.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q239. What is WAN?</h4>
+        <p><b>Answer:</b> WAN stands for Wide Area Network. It connects devices over large geographical areas.</p>
+        <p><b>Explanation:</b> The Internet is the largest example of a WAN.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q240. What is MAN?</h4>
+        <p><b>Answer:</b> MAN stands for Metropolitan Area Network. It connects networks across a city or large campus.</p>
+        <p><b>Explanation:</b> It covers a larger area than LAN but a smaller area than WAN.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q241. What is network topology?</h4>
+        <p><b>Answer:</b> Network topology is the physical or logical arrangement of devices in a network.</p>
+        <p><b>Explanation:</b> Common topologies include bus, star, ring, mesh, and tree.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q242. What is the OSI model?</h4>
+        <p><b>Answer:</b> The OSI model is a seven-layer reference model used to understand network communication.</p>
+        <p><b>Explanation:</b> Its seven layers are Physical, Data Link, Network, Transport, Session, Presentation, and Application.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q243. Name the seven layers of the OSI model.</h4>
+        <p><b>Answer:</b> Physical, Data Link, Network, Transport, Session, Presentation, and Application.</p>
+        <p><b>Explanation:</b> Each layer performs a specific function during data communication.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q244. What is the TCP/IP model?</h4>
+        <p><b>Answer:</b> The TCP/IP model is a networking framework used for communication over the Internet.</p>
+        <p><b>Explanation:</b> It commonly consists of four layers: Network Access, Internet, Transport, and Application.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q245. What is an IP address?</h4>
+        <p><b>Answer:</b> An IP address is a unique logical address assigned to a device on an IP network.</p>
+        <p><b>Explanation:</b> It helps identify devices and route data to the correct destination.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q246. What is the difference between IPv4 and IPv6?</h4>
+        <p><b>Answer:</b> IPv4 uses 32-bit addresses, whereas IPv6 uses 128-bit addresses.</p>
+        <p><b>Explanation:</b> IPv6 provides a much larger address space than IPv4.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q247. What is a MAC address?</h4>
+        <p><b>Answer:</b> A MAC address is a hardware address used to identify a network interface on a local network.</p>
+        <p><b>Explanation:</b> It operates mainly at the Data Link layer of the OSI model.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q248. What is DNS?</h4>
+        <p><b>Answer:</b> DNS stands for Domain Name System. It translates domain names into IP addresses.</p>
+        <p><b>Explanation:</b> It allows users to access websites using names instead of remembering IP addresses.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q249. What is DHCP?</h4>
+        <p><b>Answer:</b> DHCP stands for Dynamic Host Configuration Protocol. It automatically assigns IP configuration to devices.</p>
+        <p><b>Explanation:</b> It reduces the need to configure IP addresses manually.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q250. What is a router?</h4>
+        <p><b>Answer:</b> A router is a networking device that forwards data packets between different networks.</p>
+        <p><b>Explanation:</b> It helps connect a local network to other networks, including the Internet.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q251. What is a switch?</h4>
+        <p><b>Answer:</b> A switch is a networking device that connects devices within a LAN.</p>
+        <p><b>Explanation:</b> It forwards frames using MAC addresses.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q252. What is the difference between a router and a switch?</h4>
+        <p><b>Answer:</b> A router connects different networks, while a switch connects devices within the same local network.</p>
+        <p><b>Explanation:</b> Routers mainly use IP addresses, whereas switches commonly use MAC addresses.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q253. What is a modem?</h4>
+        <p><b>Answer:</b> A modem is a device that converts signals to enable communication over an Internet service connection.</p>
+        <p><b>Explanation:</b> It helps connect a home or office network to an Internet service provider.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q254. What is bandwidth?</h4>
+        <p><b>Answer:</b> Bandwidth is the maximum data-carrying capacity of a network connection over a given period.</p>
+        <p><b>Explanation:</b> It is commonly measured in bits per second.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q255. What is latency?</h4>
+        <p><b>Answer:</b> Latency is the time taken for data to travel from a source to a destination.</p>
+        <p><b>Explanation:</b> Lower latency generally means faster network response.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q256. What is TCP?</h4>
+        <p><b>Answer:</b> TCP stands for Transmission Control Protocol. It provides reliable and ordered data delivery.</p>
+        <p><b>Explanation:</b> TCP uses acknowledgements and retransmissions to help ensure data reaches its destination.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q257. What is UDP?</h4>
+        <p><b>Answer:</b> UDP stands for User Datagram Protocol. It sends data without establishing a connection.</p>
+        <p><b>Explanation:</b> It has lower overhead than TCP but does not guarantee delivery or ordering.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q258. What is the difference between TCP and UDP?</h4>
+        <p><b>Answer:</b> TCP is connection-oriented and reliable, while UDP is connectionless and does not guarantee delivery.</p>
+        <p><b>Explanation:</b> TCP is commonly used for reliable transfers, while UDP is useful for applications that prioritize low delay.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q259. What is HTTP?</h4>
+        <p><b>Answer:</b> HTTP stands for Hypertext Transfer Protocol. It is used for communication between web browsers and web servers.</p>
+        <p><b>Explanation:</b> It follows a request-response communication model.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q260. What is HTTPS?</h4>
+        <p><b>Answer:</b> HTTPS stands for Hypertext Transfer Protocol Secure. It uses encryption to protect communication between a browser and a server.</p>
+        <p><b>Explanation:</b> HTTPS uses TLS to help protect data from being read or modified during transmission.</p>
+    </div>
+</div>
+<div class="category-section" id="os">
+    <h2 class="category-title">💻 Operating Systems Interview Questions</h2>
+
+    <div class="question-card">
+        <h4>Q261. What is an operating system?</h4>
+        <p><b>Answer:</b> An operating system is system software that manages computer hardware and software resources.</p>
+        <p><b>Explanation:</b> It acts as an interface between the user and the computer hardware.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q262. Give examples of operating systems.</h4>
+        <p><b>Answer:</b> Windows, Linux, macOS, Android, and iOS.</p>
+        <p><b>Explanation:</b> These operating systems manage devices and provide an environment for applications.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q263. What are the main functions of an operating system?</h4>
+        <p><b>Answer:</b> Process management, memory management, file management, device management, and security.</p>
+        <p><b>Explanation:</b> These functions help the computer run programs and manage resources efficiently.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q264. What is a process?</h4>
+        <p><b>Answer:</b> A process is a program that is currently being executed.</p>
+        <p><b>Explanation:</b> It includes the program code, data, and information needed for execution.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q265. What is a thread?</h4>
+        <p><b>Answer:</b> A thread is the smallest unit of execution within a process.</p>
+        <p><b>Explanation:</b> Multiple threads in a process can share resources while performing different tasks.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q266. What is the difference between a process and a thread?</h4>
+        <p><b>Answer:</b> A process is an independent executing program, while a thread is a smaller execution unit within a process.</p>
+        <p><b>Explanation:</b> Processes generally have separate memory spaces, while threads of the same process share memory.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q267. What is multitasking?</h4>
+        <p><b>Answer:</b> Multitasking is the ability of an operating system to run multiple tasks seemingly at the same time.</p>
+        <p><b>Explanation:</b> The operating system manages CPU time among different tasks.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q268. What is multiprocessing?</h4>
+        <p><b>Answer:</b> Multiprocessing is the use of two or more processors or CPU cores to execute tasks.</p>
+        <p><b>Explanation:</b> It can improve performance by allowing tasks to run in parallel.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q269. What is context switching?</h4>
+        <p><b>Answer:</b> Context switching is the process of saving the state of one process or thread and loading another.</p>
+        <p><b>Explanation:</b> It allows the CPU to switch between different tasks.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q270. What is CPU scheduling?</h4>
+        <p><b>Answer:</b> CPU scheduling is the method used by an operating system to select which process gets CPU time.</p>
+        <p><b>Explanation:</b> It helps manage processes and improve CPU utilization.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q271. Name some CPU scheduling algorithms.</h4>
+        <p><b>Answer:</b> First Come First Serve (FCFS), Shortest Job First (SJF), Priority Scheduling, and Round Robin.</p>
+        <p><b>Explanation:</b> Each algorithm uses a different method to decide the order of process execution.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q272. What is deadlock?</h4>
+        <p><b>Answer:</b> Deadlock is a situation where two or more processes wait indefinitely for resources held by each other.</p>
+        <p><b>Explanation:</b> As a result, the processes cannot continue their execution.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q273. What are the four necessary conditions for deadlock?</h4>
+        <p><b>Answer:</b> Mutual exclusion, hold and wait, no preemption, and circular wait.</p>
+        <p><b>Explanation:</b> All four conditions must be present simultaneously for a deadlock to occur.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q274. What is memory management?</h4>
+        <p><b>Answer:</b> Memory management is the process of controlling and coordinating computer memory.</p>
+        <p><b>Explanation:</b> The operating system allocates and releases memory for running programs.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q275. What is virtual memory?</h4>
+        <p><b>Answer:</b> Virtual memory is a memory management technique that uses secondary storage to extend the available address space.</p>
+        <p><b>Explanation:</b> It allows programs to operate even when physical RAM is limited.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q276. What is paging?</h4>
+        <p><b>Answer:</b> Paging is a memory management technique that divides virtual memory into fixed-size pages and physical memory into frames.</p>
+        <p><b>Explanation:</b> Pages can be placed in available frames, helping manage memory efficiently.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q277. What is segmentation?</h4>
+        <p><b>Answer:</b> Segmentation is a memory management technique that divides a program into variable-sized logical segments.</p>
+        <p><b>Explanation:</b> Examples include code, data, and stack segments.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q278. What is fragmentation?</h4>
+        <p><b>Answer:</b> Fragmentation is the wastage of memory space caused by inefficient memory allocation.</p>
+        <p><b>Explanation:</b> It is mainly classified into internal and external fragmentation.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q279. What is a semaphore?</h4>
+        <p><b>Answer:</b> A semaphore is a synchronization mechanism used to control access to shared resources.</p>
+        <p><b>Explanation:</b> It helps coordinate processes and threads and prevent certain race conditions.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q280. What is a race condition?</h4>
+        <p><b>Answer:</b> A race condition occurs when the result of a program depends on the timing or order of concurrent operations.</p>
+        <p><b>Explanation:</b> It can happen when multiple threads access shared data without proper synchronization.</p>
+    </div>
+</div>
+<div class="category-section" id="oop">
+    <h2 class="category-title">🧩 OOP Interview Questions</h2>
+
+    <div class="question-card">
+        <h4>Q281. What is Object-Oriented Programming?</h4>
+        <p><b>Answer:</b> OOP is a programming approach based on objects and classes.</p>
+        <p><b>Explanation:</b> It helps organize code into reusable and manageable components.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q282. What are the four main principles of OOP?</h4>
+        <p><b>Answer:</b> Encapsulation, Abstraction, Inheritance, and Polymorphism.</p>
+        <p><b>Explanation:</b> These principles help create modular, reusable, and maintainable programs.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q283. What is encapsulation?</h4>
+        <p><b>Answer:</b> Encapsulation is the process of combining data and methods into a single unit called a class.</p>
+        <p><b>Explanation:</b> It protects data by controlling access through methods.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q284. What is abstraction?</h4>
+        <p><b>Answer:</b> Abstraction means hiding implementation details and showing only essential features.</p>
+        <p><b>Explanation:</b> It reduces complexity and makes programs easier to use.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q285. What is inheritance?</h4>
+        <p><b>Answer:</b> Inheritance allows one class to acquire properties and methods from another class.</p>
+        <p><b>Explanation:</b> It supports code reuse and helps create relationships between classes.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q286. What is polymorphism?</h4>
+        <p><b>Answer:</b> Polymorphism means one interface or method name can represent different forms of behavior.</p>
+        <p><b>Explanation:</b> It allows the same operation to behave differently depending on the object or arguments.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q287. What is a class?</h4>
+        <p><b>Answer:</b> A class is a blueprint or template used to create objects.</p>
+        <p><b>Explanation:</b> It defines the properties and methods that its objects can have.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q288. What is an object?</h4>
+        <p><b>Answer:</b> An object is an instance of a class.</p>
+        <p><b>Explanation:</b> It contains data and can perform actions through methods.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q289. What is a constructor?</h4>
+        <p><b>Answer:</b> A constructor is a special method or mechanism used to initialize an object.</p>
+        <p><b>Explanation:</b> It is called when an object is created.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q290. What is method overloading?</h4>
+        <p><b>Answer:</b> Method overloading means defining multiple methods with the same name but different parameter lists.</p>
+        <p><b>Explanation:</b> It is an example of compile-time polymorphism in languages such as Java.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q291. What is method overriding?</h4>
+        <p><b>Answer:</b> Method overriding occurs when a subclass provides its own implementation of an inherited method.</p>
+        <p><b>Explanation:</b> It supports runtime polymorphism in languages such as Java.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q292. What is the difference between overloading and overriding?</h4>
+        <p><b>Answer:</b> Overloading uses the same method name with different parameters, while overriding redefines an inherited method in a subclass.</p>
+        <p><b>Explanation:</b> Overloading is generally resolved at compile time, while overriding supports runtime polymorphism.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q293. What are access modifiers?</h4>
+        <p><b>Answer:</b> Access modifiers control the visibility and accessibility of classes, methods, and variables.</p>
+        <p><b>Explanation:</b> Common Java access modifiers are public, private, protected, and default.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q294. What is an abstract class?</h4>
+        <p><b>Answer:</b> An abstract class is a class that cannot be instantiated directly and may contain abstract and concrete methods.</p>
+        <p><b>Explanation:</b> It provides a common base for related subclasses.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q295. What is an interface?</h4>
+        <p><b>Answer:</b> An interface defines a contract that implementing classes agree to follow.</p>
+        <p><b>Explanation:</b> It helps achieve abstraction and supports flexible program design.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q296. What is the difference between an abstract class and an interface?</h4>
+        <p><b>Answer:</b> An abstract class can maintain instance state and provide constructors, while an interface mainly defines a contract.</p>
+        <p><b>Explanation:</b> A class can extend one class but can implement multiple interfaces in Java.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q297. What is data hiding?</h4>
+        <p><b>Answer:</b> Data hiding means restricting direct access to the internal data of an object.</p>
+        <p><b>Explanation:</b> It is commonly achieved using private variables and controlled access methods.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q298. What is a destructor?</h4>
+        <p><b>Answer:</b> A destructor is a special member function used to perform cleanup when an object is destroyed in languages such as C++.</p>
+        <p><b>Explanation:</b> It can release resources such as dynamically allocated memory.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q299. What is association in OOP?</h4>
+        <p><b>Answer:</b> Association is a relationship between two independent classes or objects.</p>
+        <p><b>Explanation:</b> It represents how objects interact with or use one another.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q300. What is the difference between aggregation and composition?</h4>
+        <p><b>Answer:</b> Aggregation is a weak whole-part relationship, while composition is a strong whole-part relationship.</p>
+        <p><b>Explanation:</b> In composition, the part's lifecycle is generally dependent on the whole.</p>
+    </div>
+</div>
+<div class="category-section" id="hr">
+    <h2 class="category-title">🤝 HR & Technical Interview Questions</h2>
+
+    <div class="question-card">
+        <h4>Q301. Tell me about yourself.</h4>
+        <p><b>Answer:</b> I am an engineering student pursuing Artificial Intelligence and Machine Learning. I am interested in programming, problem-solving, and learning new technologies.</p>
+        <p><b>Explanation:</b> Give a short introduction covering your education, skills, projects, and career interests.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q302. Why should we hire you?</h4>
+        <p><b>Answer:</b> You should hire me because I am willing to learn, adaptable, responsible, and committed to completing assigned tasks.</p>
+        <p><b>Explanation:</b> Connect your strengths and willingness to improve with the company's requirements.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q303. What are your strengths?</h4>
+        <p><b>Answer:</b> My strengths include willingness to learn, time management, teamwork, and dedication.</p>
+        <p><b>Explanation:</b> Mention genuine strengths and support them with examples.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q304. What is your weakness?</h4>
+        <p><b>Answer:</b> Sometimes I spend extra time checking my work, but I am learning to balance accuracy with efficiency.</p>
+        <p><b>Explanation:</b> Mention a genuine weakness and explain how you are improving it.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q305. Where do you see yourself in five years?</h4>
+        <p><b>Answer:</b> I see myself as a skilled professional taking responsibility for important projects and contributing to the organization.</p>
+        <p><b>Explanation:</b> Show ambition while keeping your career goals realistic.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q306. Why do you want to join our company?</h4>
+        <p><b>Answer:</b> I want to join your company because it offers opportunities to learn, work on meaningful projects, and develop professionally.</p>
+        <p><b>Explanation:</b> Research the company and mention specific reasons for your interest.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q307. How do you handle pressure?</h4>
+        <p><b>Answer:</b> I handle pressure by staying organized, prioritizing tasks, and focusing on one task at a time.</p>
+        <p><b>Explanation:</b> Give an example of how you managed a challenging situation.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q308. Are you comfortable working in a team?</h4>
+        <p><b>Answer:</b> Yes, I am comfortable working in a team and sharing responsibilities to achieve common goals.</p>
+        <p><b>Explanation:</b> Teamwork requires communication, cooperation, and respect for different ideas.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q309. How do you handle failure?</h4>
+        <p><b>Answer:</b> I treat failure as a learning opportunity, identify my mistakes, and work to improve.</p>
+        <p><b>Explanation:</b> Explain how you use feedback and experience to perform better.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q310. Do you have any questions for us?</h4>
+        <p><b>Answer:</b> Yes. I would like to know about the team's work, learning opportunities, and expectations for this role.</p>
+        <p><b>Explanation:</b> Asking relevant questions shows interest in the role and organization.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q311. Explain your final-year project.</h4>
+        <p><b>Answer:</b> Explain the project's title, objective, technologies used, your contribution, and the result.</p>
+        <p><b>Explanation:</b> Prepare a clear explanation of your project and be ready to discuss its features.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q312. What is teamwork?</h4>
+        <p><b>Answer:</b> Teamwork is the process of working together with others to achieve a common goal.</p>
+        <p><b>Explanation:</b> It involves communication, cooperation, responsibility, and mutual support.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q313. What is problem-solving?</h4>
+        <p><b>Answer:</b> Problem-solving is the process of identifying a problem, analyzing it, and finding a suitable solution.</p>
+        <p><b>Explanation:</b> It is an important skill for handling technical and real-world challenges.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q314. What is debugging?</h4>
+        <p><b>Answer:</b> Debugging is the process of finding and fixing errors in a program.</p>
+        <p><b>Explanation:</b> Developers use debugging tools and testing to identify the cause of errors.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q315. What is the difference between a compiler and an interpreter?</h4>
+        <p><b>Answer:</b> A compiler translates source code into another form before execution, while an interpreter executes code through an interpreter environment.</p>
+        <p><b>Explanation:</b> Both are language implementation approaches used to run programs.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q316. What is Git?</h4>
+        <p><b>Answer:</b> Git is a distributed version control system used to track changes in source code.</p>
+        <p><b>Explanation:</b> It helps developers manage project versions and collaborate.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q317. What is GitHub?</h4>
+        <p><b>Answer:</b> GitHub is a platform for hosting and collaborating on Git repositories.</p>
+        <p><b>Explanation:</b> Developers use it to share code, manage projects, and collaborate with others.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q318. What is an API?</h4>
+        <p><b>Answer:</b> API stands for Application Programming Interface. It allows different software applications to communicate.</p>
+        <p><b>Explanation:</b> APIs define how one application can request services or data from another.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q319. What is cloud computing?</h4>
+        <p><b>Answer:</b> Cloud computing provides computing services such as storage, servers, and software over the Internet.</p>
+        <p><b>Explanation:</b> It allows users to access computing resources without maintaining all infrastructure locally.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q320. What is artificial intelligence?</h4>
+        <p><b>Answer:</b> Artificial Intelligence is a field of computer science that develops systems capable of performing tasks that normally require human intelligence.</p>
+        <p><b>Explanation:</b> Examples include language processing, image recognition, and decision-making systems.</p>
+    </div>
+</div>
+
+<div class="category-section" id="aptitude">
+    <h2 class="category-title">🧠 Aptitude Interview Questions</h2>
+
+    <div class="question-card">
+        <h4>Q321. Find the LCM of 12 and 18.</h4>
+        <p><b>Answer:</b> 36</p>
+        <p><b>Explanation:</b> The smallest number divisible by both 12 and 18 is 36.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q322. Find the HCF of 24 and 36.</h4>
+        <p><b>Answer:</b> 12</p>
+        <p><b>Explanation:</b> The greatest number that divides both 24 and 36 exactly is 12.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q323. What is 25% of 200?</h4>
+        <p><b>Answer:</b> 50</p>
+        <p><b>Explanation:</b> 25/100 × 200 = 50.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q324. A number is increased from 80 to 100. Find the percentage increase.</h4>
+        <p><b>Answer:</b> 25%</p>
+        <p><b>Explanation:</b> Increase = 20. Percentage increase = (20/80) × 100 = 25%.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q325. Find the average of 10, 20, 30, 40, and 50.</h4>
+        <p><b>Answer:</b> 30</p>
+        <p><b>Explanation:</b> Average = (10 + 20 + 30 + 40 + 50) / 5 = 30.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q326. A product costs ₹500 and is sold for ₹600. Find the profit percentage.</h4>
+        <p><b>Answer:</b> 20%</p>
+        <p><b>Explanation:</b> Profit = ₹100. Profit percentage = (100/500) × 100 = 20%.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q327. A product is bought for ₹800 and sold for ₹720. Find the loss percentage.</h4>
+        <p><b>Answer:</b> 10%</p>
+        <p><b>Explanation:</b> Loss = ₹80. Loss percentage = (80/800) × 100 = 10%.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q328. Find the simple interest on ₹1,000 at 5% per year for 2 years.</h4>
+        <p><b>Answer:</b> ₹100</p>
+        <p><b>Explanation:</b> SI = (P × R × T) / 100 = (1000 × 5 × 2) / 100 = ₹100.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q329. A car travels 150 km in 3 hours. Find its average speed.</h4>
+        <p><b>Answer:</b> 50 km/h</p>
+        <p><b>Explanation:</b> Speed = Distance / Time = 150 / 3 = 50 km/h.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q330. How much time is needed to travel 120 km at 40 km/h?</h4>
+        <p><b>Answer:</b> 3 hours</p>
+        <p><b>Explanation:</b> Time = Distance / Speed = 120 / 40 = 3 hours.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q331. A can complete a task in 10 days. What part of the task does A complete in one day?</h4>
+        <p><b>Answer:</b> 1/10</p>
+        <p><b>Explanation:</b> One-day work = 1 / Total days = 1/10.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q332. If 5 workers complete a job in 12 days, how many worker-days are required?</h4>
+        <p><b>Answer:</b> 60 worker-days</p>
+        <p><b>Explanation:</b> Total work = 5 × 12 = 60 worker-days.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q333. Find the next number: 2, 4, 8, 16, __.</h4>
+        <p><b>Answer:</b> 32</p>
+        <p><b>Explanation:</b> Each number is multiplied by 2 to get the next number.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q334. Find the next number: 5, 10, 15, 20, __.</h4>
+        <p><b>Answer:</b> 25</p>
+        <p><b>Explanation:</b> Each number increases by 5.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q335. Find the missing number: 3, 6, 9, __, 15.</h4>
+        <p><b>Answer:</b> 12</p>
+        <p><b>Explanation:</b> The sequence increases by 3 each time.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q336. A bag contains 3 red balls and 2 blue balls. What is the probability of selecting a red ball?</h4>
+        <p><b>Answer:</b> 3/5</p>
+        <p><b>Explanation:</b> Probability = Number of favorable outcomes / Total outcomes = 3/5.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q337. How many degrees are there in the sum of the angles of a triangle?</h4>
+        <p><b>Answer:</b> 180°</p>
+        <p><b>Explanation:</b> The interior angles of every triangle add up to 180°.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q338. Find the square of 15.</h4>
+        <p><b>Answer:</b> 225</p>
+        <p><b>Explanation:</b> 15 × 15 = 225.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q339. Find the cube of 4.</h4>
+        <p><b>Answer:</b> 64</p>
+        <p><b>Explanation:</b> 4 × 4 × 4 = 64.</p>
+    </div>
+
+    <div class="question-card">
+        <h4>Q340. If 12 pens cost ₹60, what is the cost of one pen?</h4>
+        <p><b>Answer:</b> ₹5</p>
+        <p><b>Explanation:</b> Cost of one pen = 60 / 12 = ₹5.</p>
+    </div>
+</div>
+<div class="category-section" id="hr">
+        <h2>🔥 Important HR & Technical Interview Questions</h2>
+
+        <div class="question-card">
+            <h4>Q341. Tell me about yourself.</h4>
+            <p><b>Answer:</b> I am an engineering student pursuing Artificial Intelligence and Machine Learning. I am interested in programming, problem-solving and software development. I continuously work on improving my technical and communication skills.</p>
+            <p><b>Explanation:</b> Introduce your education, interests, skills and career goals briefly.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q342. Explain your project architecture.</h4>
+            <p><b>Answer:</b> My project contains a frontend, backend and database. The frontend handles user interaction, the backend processes requests, and the database stores information.</p>
+            <p><b>Explanation:</b> Explain how the different components communicate.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q343. What was the biggest challenge in your project?</h4>
+            <p><b>Answer:</b> One challenge was connecting different components correctly. I solved problems by testing features separately and correcting errors step by step.</p>
+            <p><b>Explanation:</b> Interviewers want to understand your problem-solving ability.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q344. Why should we hire you?</h4>
+            <p><b>Answer:</b> I am hardworking, adaptable and willing to learn new technologies. I am committed to improving my skills and contributing to the organization.</p>
+            <p><b>Explanation:</b> Connect your strengths with the job requirements.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q345. What will you do if you cannot answer a technical question?</h4>
+            <p><b>Answer:</b> I will honestly explain what I know and admit when I am unsure. I will try to approach the problem logically.</p>
+            <p><b>Explanation:</b> Honesty and logical thinking are important in interviews.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q346. What is the difference between SQL and NoSQL?</h4>
+            <p><b>Answer:</b> SQL databases store structured data in tables. NoSQL databases support flexible formats such as documents and key-value pairs.</p>
+            <p><b>Explanation:</b> SQL is relational, while NoSQL supports different data models.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q347. What is database normalization?</h4>
+            <p><b>Answer:</b> Normalization organizes database tables to reduce data duplication and improve consistency.</p>
+            <p><b>Explanation:</b> It divides data into related tables using suitable relationships.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q348. What is the difference between primary key and foreign key?</h4>
+            <p><b>Answer:</b> A primary key uniquely identifies a record. A foreign key connects one table to another.</p>
+            <p><b>Explanation:</b> Primary keys identify records, while foreign keys establish relationships.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q349. What is the difference between an array and a linked list?</h4>
+            <p><b>Answer:</b> An array stores elements in contiguous memory locations. A linked list stores elements in separate nodes connected using pointers.</p>
+            <p><b>Explanation:</b> Arrays support index-based access, while linked lists allow flexible insertion and deletion.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q350. What is the difference between stack and queue?</h4>
+            <p><b>Answer:</b> Stack follows LIFO (Last In, First Out). Queue follows FIFO (First In, First Out).</p>
+            <p><b>Explanation:</b> Stack uses push and pop operations. Queue uses enqueue and dequeue operations.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q351. What is the time complexity of binary search?</h4>
+            <p><b>Answer:</b> O(log n).</p>
+            <p><b>Explanation:</b> Binary search repeatedly divides a sorted search space into two halves.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q352. What is the difference between == and equals() in Java?</h4>
+            <p><b>Answer:</b> The == operator compares primitive values or object references. The equals() method checks logical equality when properly implemented.</p>
+            <p><b>Explanation:</b> String objects commonly use equals() to compare their contents.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q353. What is exception handling?</h4>
+            <p><b>Answer:</b> Exception handling manages runtime errors and helps maintain the normal flow of a program.</p>
+            <p><b>Explanation:</b> Java uses try, catch, finally, throw and throws.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q354. What is the difference between GET and POST?</h4>
+            <p><b>Answer:</b> GET is generally used to retrieve data. POST is generally used to submit data to a server.</p>
+            <p><b>Explanation:</b> Both are HTTP methods used in web communication.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q355. What is the difference between authentication and authorization?</h4>
+            <p><b>Answer:</b> Authentication verifies a user's identity. Authorization determines what resources the user can access.</p>
+            <p><b>Explanation:</b> Authentication checks who you are; authorization checks what you can do.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q356. What is software testing?</h4>
+            <p><b>Answer:</b> Software testing checks an application to identify errors and verify that it meets requirements.</p>
+            <p><b>Explanation:</b> Testing improves software quality and reliability.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q357. What is the difference between frontend and backend?</h4>
+            <p><b>Answer:</b> Frontend is the user-facing part of an application. Backend handles server-side operations and database communication.</p>
+            <p><b>Explanation:</b> Both work together to create a complete application.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q358. What is a REST API?</h4>
+            <p><b>Answer:</b> A REST API allows applications to communicate over HTTP using methods such as GET, POST, PUT and DELETE.</p>
+            <p><b>Explanation:</b> It helps different software systems exchange information.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q359. What is Machine Learning?</h4>
+            <p><b>Answer:</b> Machine Learning is a branch of Artificial Intelligence that enables computers to learn patterns from data and make predictions.</p>
+            <p><b>Explanation:</b> Its main types include supervised, unsupervised and reinforcement learning.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q360. Where do you see yourself in five years?</h4>
+            <p><b>Answer:</b> I see myself as a skilled professional with strong technical knowledge, practical experience and the ability to contribute to challenging projects.</p>
+            <p><b>Explanation:</b> Show realistic career goals and willingness to grow.</p>
+        </div>
+    </div>
+
+    <div class="category-section" id="aptitude">
+        <h2>🔥 Important Placement Aptitude Questions</h2>
+
+        <div class="question-card">
+            <h4>Q361. A number is increased by 20% and then decreased by 20%. Find the net percentage change.</h4>
+            <p><b>Answer:</b> 4% decrease.</p>
+            <p><b>Explanation:</b> Assume 100. After increase it becomes 120. After decrease it becomes 96. Net decrease = 4%.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q362. The ratio of two numbers is 3:5 and their sum is 64. Find the numbers.</h4>
+            <p><b>Answer:</b> 24 and 40.</p>
+            <p><b>Explanation:</b> Total parts = 8. One part = 64/8 = 8. Numbers = 24 and 40.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q363. The average of five numbers is 28. The average of four numbers is 25. Find the fifth number.</h4>
+            <p><b>Answer:</b> 40.</p>
+            <p><b>Explanation:</b> Total of five = 140. Total of four = 100. Fifth number = 40.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q364. A train 120 metres long crosses a pole in 6 seconds. Find its speed.</h4>
+            <p><b>Answer:</b> 72 km/hr.</p>
+            <p><b>Explanation:</b> Speed = 120/6 = 20 m/s = 72 km/hr.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q365. A completes a work in 12 days and B in 18 days. How long will they take together?</h4>
+            <p><b>Answer:</b> 7.2 days.</p>
+            <p><b>Explanation:</b> Combined work per day = 1/12 + 1/18 = 5/36. Time = 36/5 = 7.2 days.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q366. A pipe fills a tank in 6 hours and another empties it in 9 hours. Find the filling time together.</h4>
+            <p><b>Answer:</b> 18 hours.</p>
+            <p><b>Explanation:</b> Net work per hour = 1/6 − 1/9 = 1/18.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q367. Find compound interest on ₹10,000 at 10% per annum for 2 years.</h4>
+            <p><b>Answer:</b> ₹2,100.</p>
+            <p><b>Explanation:</b> Amount = 10000 × 1.1 × 1.1 = ₹12,100. Interest = ₹2,100.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q368. A person spends 75% of income and saves ₹5,000. Find the income.</h4>
+            <p><b>Answer:</b> ₹20,000.</p>
+            <p><b>Explanation:</b> Savings are 25%. Income = 5000 × 100/25 = ₹20,000.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q369. Find the selling price of an item marked at ₹2,000 after a 10% discount.</h4>
+            <p><b>Answer:</b> ₹1,800.</p>
+            <p><b>Explanation:</b> Discount = ₹200. Selling price = 2000 − 200 = ₹1,800.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q370. Find the equivalent discount for successive discounts of 10% and 20%.</h4>
+            <p><b>Answer:</b> 28%.</p>
+            <p><b>Explanation:</b> Equivalent discount = 10 + 20 − (10 × 20)/100 = 28%.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q371. Equal distances are travelled at 40 km/hr and 60 km/hr. Find the average speed.</h4>
+            <p><b>Answer:</b> 48 km/hr.</p>
+            <p><b>Explanation:</b> Average speed = 2 × 40 × 60/(40 + 60) = 48 km/hr.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q372. Two dice are rolled. Find the probability of getting a sum of 7.</h4>
+            <p><b>Answer:</b> 1/6.</p>
+            <p><b>Explanation:</b> Six outcomes give a sum of 7 out of 36 possible outcomes. Probability = 6/36 = 1/6.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q373. In how many ways can 5 different books be arranged?</h4>
+            <p><b>Answer:</b> 120 ways.</p>
+            <p><b>Explanation:</b> Arrangements = 5! = 120.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q374. In how many ways can 2 students be selected from 6 students?</h4>
+            <p><b>Answer:</b> 15 ways.</p>
+            <p><b>Explanation:</b> 6C2 = 6!/(2! × 4!) = 15.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q375. Find the next number: 3, 8, 15, 24, 35, __.</h4>
+            <p><b>Answer:</b> 48.</p>
+            <p><b>Explanation:</b> Differences are 5, 7, 9, 11. Next difference = 13. Therefore, 35 + 13 = 48.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q376. Find the next number: 2, 6, 18, 54, __.</h4>
+            <p><b>Answer:</b> 162.</p>
+            <p><b>Explanation:</b> Each number is multiplied by 3. Therefore, 54 × 3 = 162.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q377. A father is three times as old as his son. After 10 years, he will be twice as old. Find their present ages.</h4>
+            <p><b>Answer:</b> Father = 30 years; Son = 10 years.</p>
+            <p><b>Explanation:</b> Let son's age be x. Then 3x + 10 = 2(x + 10). Therefore, x = 10.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q378. 15 workers complete a job in 20 days. How many days will 25 workers take?</h4>
+            <p><b>Answer:</b> 12 days.</p>
+            <p><b>Explanation:</b> Total work = 15 × 20 = 300 worker-days. Days = 300/25 = 12.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q379. Find the smallest number that leaves remainder 1 when divided by 2, 3, 4 and 5.</h4>
+            <p><b>Answer:</b> 61.</p>
+            <p><b>Explanation:</b> LCM of 2, 3, 4 and 5 is 60. Required number = 60 + 1 = 61.</p>
+        </div>
+
+        <div class="question-card">
+            <h4>Q380. A student scores 60, 70, 80 and 90 in four tests. Find the average.</h4>
+            <p><b>Answer:</b> 75.</p>
+            <p><b>Explanation:</b> Average = (60 + 70 + 80 + 90)/4 = 75.</p>
+        </div>
+    </div>
+
+</section>
+</main>
+</body>
+</html>

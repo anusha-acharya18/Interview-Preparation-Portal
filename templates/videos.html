@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Lessons | PrepMaster</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7ff;
+            color: #302b49;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 3px 15px #dedaf0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #7655d9;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #514b68;
+            font-weight: bold;
+            margin: 8px;
+        }
+
+        nav a:hover {
+            color: #7655d9;
+        }
+
+        header {
+            text-align: center;
+            padding: 65px 20px;
+            background: linear-gradient(120deg, #e9ddff, #dff1ff, #ffe8f2);
+        }
+
+        header h1 {
+            font-size: 38px;
+            color: #49377e;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            color: #625c77;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 45px 20px;
+        }
+
+        .video-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #e8e2f5;
+            scroll-margin-top: 90px;
+        }
+
+        .video-card h2 {
+            color: #6849b9;
+            margin-bottom: 12px;
+        }
+
+        .video-card p {
+            color: #77718b;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #eee9fa;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .watch-link {
+            display: inline-block;
+            margin-top: 15px;
+            background: #7655d9;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+        }
+
+        .watch-link:hover {
+            background: #5c3db8;
+        }
+
+        footer {
+            text-align: center;
+            background: #30264e;
+            color: white;
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 650px) {
+            nav {
+                justify-content: center;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">PrepMaster ✨</div>
+
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('home') }}#subjects">Subjects</a>
+            <a href="{{ url_for('videos') }}">Video Lessons</a>
+            <a href="{{ url_for('interview_questions') }}">Questions</a>
+            <a href="{{ url_for('home') }}#about">About</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>🎥 Video Learning Hub</h1>
+        <p>Understand concepts, strengthen your skills and prepare for placements.</p>
+    </header>
+
+    <main class="container">
+
+        <!-- C Programming -->
+        <section class="video-card" id="c-video">
+            <h2>💻 C Programming</h2>
+            <p>Learn C programming from basics, including variables, loops, functions, arrays and pointers.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/KJgsSFOSQv0"
+                    title="C Programming Tutorial for Beginners"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=C+programming+lessons+for+beginners">
+               Explore More C Lessons →
+            </a>
+        </section>
+
+        <!-- Python Programming -->
+        <section class="video-card" id="python-video">
+            <h2>🐍 Python Programming</h2>
+            <p>Learn Python syntax, variables, functions, loops and OOP.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/eWRfhZUzrAc"
+                    title="Python Programming Lesson"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=Python+programming+full+course">
+               Explore More Python Lessons →
+            </a>
+        </section>
+
+        <!-- Java Programming -->
+        <section class="video-card" id="java-video">
+            <h2>☕ Java Programming</h2>
+            <p>Explore Java fundamentals, classes, objects and inheritance.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/A74TOX803D0"
+                    title="Java Programming Lesson"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=Java+programming+full+course">
+               Explore More Java Lessons →
+            </a>
+        </section>
+
+        <!-- SQL and DBMS -->
+        <section class="video-card" id="sql-video">
+            <h2>🗄️ SQL & DBMS</h2>
+            <p>Learn database concepts, SQL queries, tables, keys, joins and normalization.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/HXV3zeQKqGY"
+                    title="SQL Tutorial - Full Database Course for Beginners"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=SQL+and+DBMS+lessons+for+beginners">
+               Explore More SQL & DBMS Lessons →
+            </a>
+        </section>
+
+        <!-- Data Structures and Algorithms -->
+        <section class="video-card" id="ds-video">
+            <h2>🧩 Data Structures & Algorithms</h2>
+            <p>Understand arrays, linked lists, stacks, queues, searching and sorting algorithms.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/8hly31xKli0"
+                    title="Algorithms and Data Structures Tutorial"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=data+structures+and+algorithms+lessons">
+               Explore More DSA Lessons →
+            </a>
+        </section>
+
+        <!-- Aptitude and Reasoning -->
+        <section class="video-card" id="aptitude-video">
+            <h2>🧠 Aptitude & Reasoning</h2>
+            <p>Prepare for placement aptitude rounds with quantitative aptitude, reasoning and problem-solving practice.</p>
+
+            <div class="video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/xWhoBSXFda4"
+                    title="Aptitude Preparation for Placements"
+                    allowfullscreen></iframe>
+            </div>
+
+            <a class="watch-link" target="_blank" rel="noopener"
+               href="https://www.youtube.com/results?search_query=placement+aptitude+and+logical+reasoning+lessons">
+               Explore More Aptitude Lessons →
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>PrepMaster ✨</h3>
+        <p>Learn • Practise • Improve • Succeed</p>
+        <p>© 2026 PrepMaster. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

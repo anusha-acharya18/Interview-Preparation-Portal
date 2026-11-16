@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster | Student Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7ff;
+            color: #292744;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 3px 15px #dedaf0;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #7655d9;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 11px 22px;
+            border-radius: 10px;
+            background: #7655d9;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #6042bd;
+            transform: translateY(-2px);
+        }
+
+        .welcome {
+            padding: 65px 8%;
+            background: linear-gradient(120deg, #e9ddff, #dff1ff, #ffe8f2);
+        }
+
+        .welcome h1 {
+            font-size: 36px;
+            color: #382b65;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            font-size: 17px;
+            color: #55516b;
+            line-height: 1.8;
+            max-width: 750px;
+        }
+
+        .container {
+            padding: 55px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #49377e;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #77718b;
+            line-height: 1.6;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #39344f;
+            box-shadow: 0 5px 20px #e8e2f5;
+            border: 1px solid #eee9fa;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px #d9cdef;
+        }
+
+        .emoji {
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: #6549b5;
+            margin-bottom: 13px;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #77718b;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .progress-card {
+            border: 2px solid #cbbafa;
+            background: linear-gradient(145deg, #ffffff, #f5f0ff);
+        }
+
+        .progress-card h3 {
+            color: #7655d9;
+        }
+
+        .bottom {
+            text-align: center;
+            padding: 30px;
+            background: #30264e;
+            color: white;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 650px) {
+            nav {
+                justify-content: center;
+            }
+
+            .welcome {
+                text-align: center;
+                padding: 45px 6%;
+            }
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 40px 6%;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">PrepMaster ✨</div>
+        <a href="{{ url_for('logout') }}">Logout ↗</a>
+    </nav>
+
+    <header class="welcome">
+        <h1>Welcome Back, {{ session.get('student_name') }}! 🎓</h1>
+
+        <p>
+            Your placement preparation journey continues here.
+            Learn, practise, improve your skills and move closer
+            to your dream job.
+        </p>
+    </header>
+
+    <main class="container">
+
+        <div class="section-title">
+            <h2>🚀 Your Learning Dashboard</h2>
+            <p>Choose what you want to learn and start preparing today.</p>
+        </div>
+
+        <div class="card-container">
+
+            <a class="card" href="{{ url_for('videos') }}">
+                <div class="emoji">🎥</div>
+                <h3>Video Lessons</h3>
+                <p>
+                    Learn C, Python, Java, SQL, Data Structures
+                    and Aptitude through educational videos.
+                </p>
+            </a>
+
+            <a class="card" href="{{ url_for('interview_questions') }}">
+                <div class="emoji">📚</div>
+                <h3>Interview Questions</h3>
+                <p>
+                    Practise technical, HR and placement
+                    interview questions with answers.
+                </p>
+            </a>
+
+            <a class="card" href="{{ url_for('interview_questions') }}#aptitude">
+                <div class="emoji">🧠</div>
+                <h3>Aptitude Practice</h3>
+                <p>
+                    Improve your logical reasoning,
+                    numerical ability and problem-solving skills.
+                </p>
+            </a>
+
+            <a class="card" href="{{ url_for('mock_test') }}">
+                <div class="emoji">📝</div>
+                <h3>Online Mock Tests</h3>
+                <p>
+                    Attempt technical and aptitude tests,
+                    submit your answers and check your scores.
+                </p>
+            </a>
+
+            <a class="card progress-card" href="{{ url_for('progress') }}">
+                <div class="emoji">📊</div>
+                <h3>My Progress</h3>
+                <p>
+                    Track your mock test scores, check subject-wise
+                    performance and monitor your improvement.
+                </p>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="bottom">
+        <h3>PrepMaster ✨</h3>
+        <p>Learn • Practise • Improve • Succeed</p>
+        <p>© 2026 PrepMaster. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

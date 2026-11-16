@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster | Your Placement Journey</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f6ff;
+            color: #292943;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #6652c7;
+        }
+
+        nav div:last-child {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #393750;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #7959d6;
+        }
+
+        .nav-button {
+            background: #7455d5;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 22px;
+        }
+
+        .nav-button:hover {
+            background: #573bb4;
+            color: white;
+        }
+
+        .welcome-section {
+            margin: 30px auto 0;
+            width: 90%;
+            max-width: 1150px;
+            padding: 28px;
+            text-align: center;
+            border-radius: 18px;
+            background: linear-gradient(120deg, #e6dcff, #d9edff, #fce2f3);
+            box-shadow: 0 5px 18px rgba(100,80,170,0.10);
+        }
+
+        .welcome-section h2 {
+            font-size: 30px;
+            color: #6042bd;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #55516c;
+            font-size: 16px;
+        }
+
+        .hero {
+            padding: 85px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.25;
+            color: #292943;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #7959d6;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #66647a;
+            max-width: 600px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 14px 22px;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #7455d5;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #7455d5;
+            border: 2px solid #7455d5;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-image .illustration {
+            font-size: 130px;
+            background: linear-gradient(135deg, #e6dcff, #d9edff);
+            border-radius: 35px;
+            padding: 55px 20px;
+        }
+
+        section {
+            padding: 65px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #44347d;
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #77748a;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 22px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 9px 24px rgba(100,80,170,0.12);
+        }
+
+        .card .emoji {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #5742a5;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #77748a;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 18px;
+            text-decoration: none;
+            color: #7455d5;
+            font-weight: bold;
+        }
+
+        .progress-feature {
+            border: 2px solid #cbbafa;
+            background: linear-gradient(145deg, #ffffff, #f1ecff);
+        }
+
+        .progress-feature h3 {
+            color: #7455d5;
+        }
+
+        .features-section {
+            background: #eeebff;
+        }
+
+        .about-box {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            line-height: 1.9;
+            color: #66647a;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+        }
+
+        footer {
+            background: #30264e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 850px) {
+            nav {
+                justify-content: center;
+            }
+
+            nav div:last-child {
+                justify-content: center;
+            }
+
+            .hero {
+                text-align: center;
+                padding: 55px 6%;
+            }
+
+            .hero h1 {
+                font-size: 37px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media(max-width: 500px) {
+            nav div:last-child {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PrepMaster ✨</div>
+
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="#subjects">Subjects</a>
+            <a href="{{ url_for('videos') }}">Video Lessons</a>
+            <a href="{{ url_for('interview_questions') }}">Questions</a>
+            <a href="{{ url_for('mock_test') }}">Mock Tests</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+
+            {% if session.get('student_id') %}
+                <a href="{{ url_for('dashboard') }}" class="nav-button">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="nav-button">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="nav-button">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-button">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Welcome section -->
+    {% if session.get('student_id') %}
+    <div class="welcome-section">
+        <h2>Welcome Back, {{ session.get('student_name') }}! 🎓</h2>
+        <p>Your placement preparation journey continues here. Keep learning and keep growing!</p>
+    </div>
+    {% endif %}
+
+    <!-- Hero section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>
+                Prepare Today,<br>
+                <span>Succeed Tomorrow!</span>
+            </h1>
+
+            <p>
+                Your journey towards your dream job starts here.
+                Learn programming, practise aptitude, explore interview
+                questions and build confidence for your placements.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{{ url_for('interview_questions') }}" class="btn primary-btn">
+                    📚 Explore Questions →
+                </a>
+
+                <a href="{{ url_for('videos') }}" class="btn secondary-btn">
+                    🎥 Watch Lessons ▶
+                </a>
+
+                <a href="{{ url_for('mock_test') }}" class="btn primary-btn">
+                    📝 Take Mock Tests →
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <div class="illustration">🎓 📚 💻</div>
+        </div>
+    </div>
+
+    <!-- Subjects -->
+    <section id="subjects">
+        <h2 class="section-title">Explore Learning Topics</h2>
+        <p class="section-description">
+            Build your technical knowledge one topic at a time.
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+                <div class="emoji">💻</div>
+                <h3>C Programming</h3>
+                <p>Learn programming fundamentals and problem-solving.</p>
+                <a href="{{ url_for('videos') }}">Start Learning →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🐍</div>
+                <h3>Python</h3>
+                <p>Understand Python concepts and practise coding.</p>
+                <a href="{{ url_for('videos') }}">Start Learning →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">☕</div>
+                <h3>Java</h3>
+                <p>Explore object-oriented programming with Java.</p>
+                <a href="{{ url_for('videos') }}">Start Learning →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🗄️</div>
+                <h3>SQL & DBMS</h3>
+                <p>Learn databases, queries and database concepts.</p>
+                <a href="{{ url_for('videos') }}">Start Learning →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🧩</div>
+                <h3>Data Structures</h3>
+                <p>Improve your logical thinking and coding skills.</p>
+                <a href="{{ url_for('videos') }}">Start Learning →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🧠</div>
+                <h3>Aptitude</h3>
+                <p>Practise quantitative aptitude and reasoning.</p>
+                <a href="{{ url_for('interview_questions') }}#aptitude">Explore Topics →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features-section">
+        <h2 class="section-title">What PrepMaster Offers</h2>
+        <p class="section-description">
+            Everything you need to prepare for your placements.
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+                <div class="emoji">📖</div>
+                <h3>Interview Questions</h3>
+                <p>Explore 380+ technical, HR and aptitude questions with answers.</p>
+                <a href="{{ url_for('interview_questions') }}">Explore Questions →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🎥</div>
+                <h3>Video Lessons</h3>
+                <p>Learn important concepts through programming video lessons.</p>
+                <a href="{{ url_for('videos') }}">Watch Lessons →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">📝</div>
+                <h3>Online Mock Tests</h3>
+                <p>Test your knowledge with subject-wise practice tests.</p>
+                <a href="{{ url_for('mock_test') }}">Take a Test →</a>
+            </div>
+
+            <div class="card">
+                <div class="emoji">🚀</div>
+                <h3>Placement Preparation</h3>
+                <p>Build your confidence and prepare for your dream job.</p>
+                <a href="{{ url_for('dashboard') }}">Get Started →</a>
+            </div>
+
+            {% if session.get('student_id') %}
+            <div class="card progress-feature">
+                <div class="emoji">📊</div>
+                <h3>My Progress</h3>
+                <p>
+                    Track your mock test scores, check subject-wise
+                    performance and monitor your improvement.
+                </p>
+                <a href="{{ url_for('progress') }}">View My Progress →</a>
+            </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <h2 class="section-title">About PrepMaster</h2>
+
+        <div class="about-box">
+            PrepMaster is an online interview and placement preparation
+            platform designed to help students improve their technical
+            knowledge, practise aptitude, explore interview questions
+            and prepare for placement opportunities.
+
+            <br><br>
+
+            Learn at your own pace, practise regularly and take one step
+            closer to your career goals.
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>PrepMaster ✨</h3>
+        <p>Prepare Today, Succeed Tomorrow!</p>
+        <p>Keep Learning. Keep Practising. Keep Growing.</p>
+        <p>© 2026 PrepMaster. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

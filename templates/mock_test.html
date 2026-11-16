@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster | Online Mock Tests</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f3ff;
+            color: #292943;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        header h2 {
+            color: #6655c7;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #6655c7;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 35px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            color: #5545ad;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .test-box {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .test-box h2 {
+            color: #5545ad;
+            margin-bottom: 18px;
+        }
+
+        .subject-select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d6d1f5;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            background: #f2f0ff;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            background: #6655c7;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5140ad;
+        }
+
+        .question-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin: 18px 0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-card h3 {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: block;
+            padding: 11px;
+            margin: 8px 0;
+            border: 1px solid #e0def0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .option input {
+            margin-right: 9px;
+        }
+
+        .correct {
+            background: #d9f7df;
+            border: 1px solid #36a653;
+        }
+
+        .wrong {
+            background: #ffe0e0;
+            border: 1px solid #e34b4b;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        #testArea, #resultArea {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>PrepMaster</h2>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</header>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Online Mock Tests</h1>
+        <p>Practice, test your knowledge and prepare for placements.</p>
+    </div>
+
+    <div class="test-box" id="startArea">
+        <h2>Select Your Subject</h2>
+
+        <select class="subject-select" id="subject">
+            <option value="">-- Select Subject --</option>
+            <option value="c">C Programming</option>
+            <option value="python">Python Programming</option>
+            <option value="java">Java Programming</option>
+            <option value="sql">SQL & DBMS</option>
+            <option value="dsa">Data Structures</option>
+            <option value="aptitude">Aptitude</option>
+        </select>
+
+        <div class="info">
+            <p><b>Total Questions:</b> 10</p>
+            <p><b>Total Marks:</b> 10</p>
+            <p><b>Question Type:</b> Multiple Choice Questions</p>
+            <p><b>Instructions:</b> Select one answer for each question and submit your test to see your result.</p>
+        </div>
+
+        <button onclick="startTest()">Start Mock Test</button>
+    </div>
+</div>
+<div id="testArea">
+        <div class="test-box">
+            <h2 id="testTitle">Mock Test</h2>
+            <p id="questionProgress"></p>
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <div class="test-box">
+            <button onclick="submitTest()">Submit Test</button>
+        </div>
+    </div>
+
+    <div id="resultArea">
+        <div class="test-box">
+            <h2>Mock Test Result</h2>
+            <h3 id="scoreText"></h3>
+            <p id="resultMessage"></p>
+
+            <h2 style="margin-top:25px;">Answer Review</h2>
+            <div id="reviewContainer"></div>
+
+            <button onclick="startTest()">Take Another Mock Test</button>
+        </div>
+    </div>
+    <script>
+
+const questionBank = {
+
+    c: [
+        {
+            q: "Who developed the C programming language?",
+            options: ["James Gosling", "Dennis Ritchie", "Bjarne Stroustrup", "Guido van Rossum"],
+            answer: 1,
+            explanation: "Dennis Ritchie developed the C programming language at Bell Laboratories."
+        },
+        {
+            q: "Which symbol is used to end a statement in C?",
+            options: [".", ":", ";", ","],
+            answer: 2,
+            explanation: "A semicolon is used to terminate most statements in C."
+        },
+        {
+            q: "Which function is the entry point of a C program?",
+            options: ["start()", "main()", "printf()", "run()"],
+            answer: 1,
+            explanation: "Execution of a standard C program begins from the main() function."
+        },
+        {
+            q: "Which header file is required for printf()?",
+            options: ["stdlib.h", "string.h", "stdio.h", "math.h"],
+            answer: 2,
+            explanation: "The stdio.h header file contains the declaration of printf()."
+        },
+        {
+            q: "Which format specifier is used for an integer?",
+            options: ["%f", "%c", "%d", "%s"],
+            answer: 2,
+            explanation: "%d is commonly used to print or read an integer."
+        },
+        {
+            q: "Which operator is used to find the remainder?",
+            options: ["/", "%", "*", "+"],
+            answer: 1,
+            explanation: "The modulus operator (%) returns the remainder after division."
+        },
+        {
+            q: "Which loop executes at least once?",
+            options: ["for", "while", "do-while", "None"],
+            answer: 2,
+            explanation: "A do-while loop checks its condition after executing the loop body."
+        },
+        {
+            q: "Which keyword is used to declare a constant variable?",
+            options: ["fixed", "const", "static", "final"],
+            answer: 1,
+            explanation: "The const keyword prevents modification of a variable through that identifier."
+        },
+        {
+            q: "Which data type stores a single character?",
+            options: ["int", "float", "char", "double"],
+            answer: 2,
+            explanation: "The char data type is used to store a character."
+        },
+        {
+            q: "Which operator represents logical AND?",
+            options: ["&", "&&", "||", "!"],
+            answer: 1,
+            explanation: "The && operator represents logical AND in C."
+        },
+        {
+            q: "Which function is used to read formatted input?",
+            options: ["printf()", "scanf()", "puts()", "gets()"],
+            answer: 1,
+            explanation: "scanf() reads formatted input from standard input."
+        },
+        {
+            q: "What is the index of the first element in a C array?",
+            options: ["1", "-1", "0", "2"],
+            answer: 2,
+            explanation: "C arrays use zero-based indexing, so the first element has index 0."
+        },
+        {
+            q: "Which keyword is used to return a value from a function?",
+            options: ["break", "return", "continue", "exit"],
+            answer: 1,
+            explanation: "The return statement sends a value back to the calling function."
+        },
+        {
+            q: "Which operator is used to access a structure member through a structure variable?",
+            options: ["->", ".", "::", "&"],
+            answer: 1,
+            explanation: "The dot operator accesses a member using a structure variable."
+        },
+        {
+            q: "Which keyword is used to define a structure?",
+            options: ["union", "struct", "class", "record"],
+            answer: 1,
+            explanation: "The struct keyword is used to define a structure in C."
+        },
+        {
+            q: "Which function allocates memory dynamically?",
+            options: ["printf()", "malloc()", "strlen()", "strcpy()"],
+            answer: 1,
+            explanation: "malloc() dynamically allocates a block of memory."
+        },
+        {
+            q: "Which header file contains malloc()?",
+            options: ["stdio.h", "string.h", "stdlib.h", "ctype.h"],
+            answer: 2,
+            explanation: "The malloc() function is declared in stdlib.h."
+        },
+        {
+            q: "What does the break statement do?",
+            options: ["Skips one iteration", "Ends a loop or switch", "Starts a loop", "Declares a variable"],
+            answer: 1,
+            explanation: "The break statement terminates the nearest enclosing loop or switch."
+        },
+        {
+            q: "Which operator is used to get the address of a variable?",
+            options: ["*", "&", "%", "#"],
+            answer: 1,
+            explanation: "The address-of operator (&) gives the memory address of a variable."
+        },
+        {
+            q: "Which of these is a valid comment in C?",
+            options: ["<!-- comment -->", "// comment", "** comment **", "## comment"],
+            answer: 1,
+            explanation: "C supports // for single-line comments and /* */ for block comments."
+        }
+    ],
+    python: [
+        {
+            q: "Who created Python?",
+            options: ["Dennis Ritchie", "Guido van Rossum", "James Gosling", "Bjarne Stroustrup"],
+            answer: 1,
+            explanation: "Guido van Rossum created Python."
+        },
+        {
+            q: "Which symbol is used for comments in Python?",
+            options: ["//", "#", "/*", "--"],
+            answer: 1,
+            explanation: "The hash symbol (#) is used for single-line comments."
+        },
+        {
+            q: "Which function displays output in Python?",
+            options: ["echo()", "print()", "display()", "write()"],
+            answer: 1,
+            explanation: "The print() function displays output."
+        },
+        {
+            q: "Which data type stores True or False?",
+            options: ["int", "str", "bool", "float"],
+            answer: 2,
+            explanation: "The bool data type represents True or False."
+        },
+        {
+            q: "Which keyword is used to define a function?",
+            options: ["function", "define", "def", "fun"],
+            answer: 2,
+            explanation: "The def keyword is used to define a function."
+        },
+        {
+            q: "Which collection stores data as key-value pairs?",
+            options: ["List", "Tuple", "Dictionary", "Set"],
+            answer: 2,
+            explanation: "A dictionary stores data in key-value pairs."
+        },
+        {
+            q: "Which brackets are used to create a list?",
+            options: ["()", "{}", "[]", "<>"],
+            answer: 2,
+            explanation: "Square brackets [] are used to create lists."
+        },
+        {
+            q: "Which keyword is used for a loop in Python?",
+            options: ["repeat", "for", "loop", "iterate"],
+            answer: 1,
+            explanation: "The for keyword is used to iterate over a sequence."
+        },
+        {
+            q: "What is the output of 2 ** 3?",
+            options: ["5", "6", "8", "9"],
+            answer: 2,
+            explanation: "The ** operator performs exponentiation. 2 raised to 3 is 8."
+        },
+        {
+            q: "Which method adds an element to the end of a list?",
+            options: ["add()", "append()", "insertEnd()", "push()"],
+            answer: 1,
+            explanation: "The append() method adds an element to the end of a list."
+        },
+        {
+            q: "Which function returns the length of a sequence?",
+            options: ["size()", "count()", "len()", "length()"],
+            answer: 2,
+            explanation: "The len() function returns the number of items in a sequence."
+        },
+        {
+            q: "Which keyword is used to handle exceptions?",
+            options: ["catch", "try", "error", "handle"],
+            answer: 1,
+            explanation: "The try block contains code that may raise an exception."
+        },
+        {
+            q: "Which data type is immutable?",
+            options: ["List", "Dictionary", "Set", "Tuple"],
+            answer: 3,
+            explanation: "A tuple cannot be changed after it is created."
+        },
+        {
+            q: "Which operator checks equality?",
+            options: ["=", "==", "!=", ">"],
+            answer: 1,
+            explanation: "The == operator checks whether two values are equal."
+        },
+        {
+            q: "Which keyword is used to import a module?",
+            options: ["include", "using", "import", "require"],
+            answer: 2,
+            explanation: "The import keyword makes a module available in a Python program."
+        },
+        {
+            q: "What is the output of len('Python')?",
+            options: ["5", "6", "7", "8"],
+            answer: 1,
+            explanation: "Python contains six characters, so len('Python') returns 6."
+        },
+        {
+            q: "Which function converts a value to an integer?",
+            options: ["str()", "float()", "int()", "bool()"],
+            answer: 2,
+            explanation: "The int() function converts a compatible value to an integer."
+        },
+        {
+            q: "Which keyword is used to create a class?",
+            options: ["object", "class", "struct", "define"],
+            answer: 1,
+            explanation: "The class keyword defines a class in Python."
+        },
+        {
+            q: "Which statement skips the current loop iteration?",
+            options: ["break", "pass", "continue", "return"],
+            answer: 2,
+            explanation: "The continue statement skips the remaining code in the current iteration."
+        },
+        {
+            q: "Which value represents the absence of a value in Python?",
+            options: ["null", "undefined", "None", "empty"],
+            answer: 2,
+            explanation: "None is Python's special value representing the absence of a value."
+        }
+    ],
+    java: [
+        {
+            q: "Who developed Java?",
+            options: ["Dennis Ritchie", "James Gosling", "Guido van Rossum", "Bjarne Stroustrup"],
+            answer: 1,
+            explanation: "James Gosling and his team at Sun Microsystems developed Java."
+        },
+        {
+            q: "Which keyword is used to create a class in Java?",
+            options: ["define", "struct", "class", "object"],
+            answer: 2,
+            explanation: "The class keyword is used to declare a class in Java."
+        },
+        {
+            q: "Which method is the entry point of a Java application?",
+            options: ["start()", "run()", "main()", "execute()"],
+            answer: 2,
+            explanation: "The main() method is the standard entry point of a Java application."
+        },
+        {
+            q: "Which keyword is used to inherit a class in Java?",
+            options: ["implements", "extends", "inherits", "super"],
+            answer: 1,
+            explanation: "The extends keyword is used for class inheritance in Java."
+        },
+        {
+            q: "Which of these is not a primitive data type in Java?",
+            options: ["int", "char", "boolean", "String"],
+            answer: 3,
+            explanation: "String is a class, not a primitive data type."
+        },
+        {
+            q: "Which keyword creates an object in Java?",
+            options: ["class", "new", "create", "object"],
+            answer: 1,
+            explanation: "The new keyword creates an object and allocates memory for it."
+        },
+        {
+            q: "Which concept allows the same method name with different parameters?",
+            options: ["Overriding", "Overloading", "Inheritance", "Encapsulation"],
+            answer: 1,
+            explanation: "Method overloading allows methods to share a name but have different parameter lists."
+        },
+        {
+            q: "Which keyword prevents a class from being inherited?",
+            options: ["static", "const", "final", "private"],
+            answer: 2,
+            explanation: "A class declared as final cannot be extended."
+        },
+        {
+            q: "Which package is automatically imported in Java?",
+            options: ["java.util", "java.io", "java.lang", "java.net"],
+            answer: 2,
+            explanation: "The java.lang package is automatically available in Java programs."
+        },
+        {
+            q: "Which operator compares two primitive values for equality?",
+            options: ["=", "==", "===", "!="],
+            answer: 1,
+            explanation: "The == operator compares primitive values for equality."
+        },
+        {
+            q: "Which keyword is used to implement an interface?",
+            options: ["extends", "implements", "interface", "import"],
+            answer: 1,
+            explanation: "The implements keyword is used when a class implements an interface."
+        },
+        {
+            q: "Which access modifier provides the widest visibility?",
+            options: ["private", "protected", "public", "default"],
+            answer: 2,
+            explanation: "The public access modifier allows access from anywhere."
+        },
+        {
+            q: "What is JVM?",
+            options: ["Java Variable Method", "Java Virtual Machine", "Java Visual Model", "Java Verified Module"],
+            answer: 1,
+            explanation: "JVM stands for Java Virtual Machine and executes Java bytecode."
+        },
+        {
+            q: "Which exception occurs when dividing an integer by zero?",
+            options: ["IOException", "ArithmeticException", "NullPointerException", "ClassNotFoundException"],
+            answer: 1,
+            explanation: "Integer division by zero causes an ArithmeticException."
+        },
+        {
+            q: "Which keyword refers to the current object?",
+            options: ["super", "this", "self", "current"],
+            answer: 1,
+            explanation: "The this keyword refers to the current object."
+        },
+        {
+            q: "Which collection does not allow duplicate elements?",
+            options: ["List", "ArrayList", "Set", "LinkedList"],
+            answer: 2,
+            explanation: "A Set does not allow duplicate elements."
+        },
+        {
+            q: "Which loop checks its condition before execution?",
+            options: ["do-while", "while", "Both always execute once", "None"],
+            answer: 1,
+            explanation: "A while loop checks its condition before executing its body."
+        },
+        {
+            q: "Which keyword is used to handle exceptions?",
+            options: ["try", "throw", "catch", "All of these"],
+            answer: 3,
+            explanation: "Java uses try, throw and catch as part of its exception-handling mechanism."
+        },
+        {
+            q: "Which method returns the length of a String?",
+            options: ["size()", "length()", "count()", "getSize()"],
+            answer: 1,
+            explanation: "The length() method returns the number of characters in a String."
+        },
+        {
+            q: "Which feature allows one interface to have multiple implementations?",
+            options: ["Polymorphism", "Compilation", "Iteration", "Casting"],
+            answer: 0,
+            explanation: "Polymorphism allows different objects to respond to the same interface in different ways."
+        }
+    ],
+    sql: [
+        {
+            q: "What does SQL stand for?",
+            options: ["Structured Query Language", "Simple Query Language", "Standard Question Language", "System Query Logic"],
+            answer: 0,
+            explanation: "SQL stands for Structured Query Language."
+        },
+        {
+            q: "Which command retrieves data from a table?",
+            options: ["GET", "SELECT", "FETCH TABLE", "OPEN"],
+            answer: 1,
+            explanation: "SELECT is used to retrieve data from database tables."
+        },
+        {
+            q: "Which command is used to insert new records?",
+            options: ["ADD", "INSERT INTO", "UPDATE", "CREATE"],
+            answer: 1,
+            explanation: "INSERT INTO adds new records to a table."
+        },
+        {
+            q: "Which command modifies existing records?",
+            options: ["CHANGE", "ALTER", "UPDATE", "MODIFY TABLE"],
+            answer: 2,
+            explanation: "UPDATE modifies existing data in a table."
+        },
+        {
+            q: "Which clause filters records in SQL?",
+            options: ["ORDER BY", "WHERE", "GROUP BY", "SELECT"],
+            answer: 1,
+            explanation: "The WHERE clause filters records based on a condition."
+        },
+        {
+            q: "Which key uniquely identifies each record in a table?",
+            options: ["Foreign key", "Primary key", "Duplicate key", "Secondary key"],
+            answer: 1,
+            explanation: "A primary key uniquely identifies each row in a table."
+        },
+        {
+            q: "Which key creates a relationship between two tables?",
+            options: ["Primary key", "Candidate key", "Foreign key", "Alternate key"],
+            answer: 2,
+            explanation: "A foreign key refers to a key in another table and helps establish relationships."
+        },
+        {
+            q: "Which command removes all records while keeping the table structure?",
+            options: ["DROP", "DELETE DATABASE", "TRUNCATE", "REMOVE"],
+            answer: 2,
+            explanation: "TRUNCATE removes all rows while keeping the table structure."
+        },
+        {
+            q: "Which SQL function counts rows?",
+            options: ["SUM()", "COUNT()", "TOTAL()", "NUMBER()"],
+            answer: 1,
+            explanation: "COUNT() returns the number of rows matching a query."
+        },
+        {
+            q: "Which clause sorts query results?",
+            options: ["SORT", "ORDER BY", "GROUP BY", "ARRANGE"],
+            answer: 1,
+            explanation: "ORDER BY sorts the result set in ascending or descending order."
+        },
+        {
+            q: "What does DBMS stand for?",
+            options: ["Database Management System", "Data Backup Management Software", "Digital Base Management System", "Database Memory Service"],
+            answer: 0,
+            explanation: "DBMS stands for Database Management System."
+        },
+        {
+            q: "Which of these is a relational database?",
+            options: ["MySQL", "HTML", "CSS", "Python"],
+            answer: 0,
+            explanation: "MySQL is a relational database management system."
+        },
+        {
+            q: "What is normalization used for?",
+            options: ["Increasing duplication", "Reducing data redundancy", "Deleting tables", "Increasing file size"],
+            answer: 1,
+            explanation: "Normalization organizes data to reduce redundancy and improve consistency."
+        },
+        {
+            q: "Which command creates a new table?",
+            options: ["MAKE TABLE", "NEW TABLE", "CREATE TABLE", "INSERT TABLE"],
+            answer: 2,
+            explanation: "CREATE TABLE defines a new table in a database."
+        },
+        {
+            q: "Which join returns matching rows from both tables?",
+            options: ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL JOIN"],
+            answer: 2,
+            explanation: "INNER JOIN returns rows that satisfy the join condition in both tables."
+        },
+        {
+            q: "Which clause groups rows with the same values?",
+            options: ["ORDER BY", "GROUP BY", "WHERE", "DISTINCT"],
+            answer: 1,
+            explanation: "GROUP BY groups rows that have the same values in specified columns."
+        },
+        {
+            q: "Which command removes a table completely?",
+            options: ["DELETE", "TRUNCATE", "DROP", "UPDATE"],
+            answer: 2,
+            explanation: "DROP TABLE removes the table structure and its data."
+        },
+        {
+            q: "What is a candidate key?",
+            options: ["A key that can uniquely identify a row", "A key with duplicate values", "A key used only for sorting", "A key that stores images"],
+            answer: 0,
+            explanation: "A candidate key is a minimal set of attributes that uniquely identifies a row."
+        },
+        {
+            q: "Which SQL operator checks whether a value matches a pattern?",
+            options: ["IN", "LIKE", "BETWEEN", "EXISTS"],
+            answer: 1,
+            explanation: "The LIKE operator performs pattern matching in SQL."
+        },
+        {
+            q: "What does ACID stand for in database transactions?",
+            options: ["Atomicity, Consistency, Isolation, Durability", "Accuracy, Control, Integrity, Data", "Access, Creation, Input, Deletion", "Atomicity, Control, Isolation, Database"],
+            answer: 0,
+            explanation: "ACID represents Atomicity, Consistency, Isolation and Durability."
+        }
+    ],
+    dsa: [
+        {
+            q: "What is a data structure?",
+            options: ["A programming language", "A way to organize and store data", "An operating system", "A database only"],
+            answer: 1,
+            explanation: "A data structure organizes and stores data for efficient access and modification."
+        },
+        {
+            q: "Which data structure follows LIFO?",
+            options: ["Queue", "Stack", "Tree", "Graph"],
+            answer: 1,
+            explanation: "A stack follows Last In, First Out (LIFO)."
+        },
+        {
+            q: "Which data structure follows FIFO?",
+            options: ["Stack", "Tree", "Queue", "Graph"],
+            answer: 2,
+            explanation: "A queue follows First In, First Out (FIFO)."
+        },
+        {
+            q: "What is the index of the first element in an array in C?",
+            options: ["1", "0", "-1", "2"],
+            answer: 1,
+            explanation: "Array indexing in C starts from zero."
+        },
+        {
+            q: "Which data structure uses nodes and pointers?",
+            options: ["Array", "Linked List", "Stack only", "Variable"],
+            answer: 1,
+            explanation: "A linked list consists of nodes connected using pointers."
+        },
+        {
+            q: "Which operation adds an element to a stack?",
+            options: ["Pop", "Push", "Delete", "Peek"],
+            answer: 1,
+            explanation: "Push inserts an element onto the top of a stack."
+        },
+        {
+            q: "Which operation removes the top element from a stack?",
+            options: ["Push", "Insert", "Pop", "Search"],
+            answer: 2,
+            explanation: "Pop removes the top element from a stack."
+        },
+        {
+            q: "Which data structure is used in Breadth First Search?",
+            options: ["Stack", "Queue", "Array only", "Heap"],
+            answer: 1,
+            explanation: "Breadth First Search uses a queue to explore nodes level by level."
+        },
+        {
+            q: "Which data structure is commonly used in Depth First Search?",
+            options: ["Queue", "Stack", "Hash table only", "Array only"],
+            answer: 1,
+            explanation: "Depth First Search uses a stack, either explicitly or through recursion."
+        },
+        {
+            q: "What is the time complexity of binary search on a sorted array?",
+            options: ["O(n)", "O(log n)", "O(n²)", "O(1)"],
+            answer: 1,
+            explanation: "Binary search repeatedly halves the search range, giving O(log n) time complexity."
+        },
+        {
+            q: "Which data structure stores elements in key-value pairs?",
+            options: ["Stack", "Queue", "Hash Table", "Linked List"],
+            answer: 2,
+            explanation: "A hash table stores values using keys."
+        },
+        {
+            q: "Which traversal visits the root node first?",
+            options: ["Inorder", "Postorder", "Preorder", "Level order"],
+            answer: 2,
+            explanation: "Preorder traversal visits the root before its subtrees."
+        },
+        {
+            q: "Which data structure represents hierarchical relationships?",
+            options: ["Queue", "Tree", "Stack", "Array"],
+            answer: 1,
+            explanation: "A tree represents hierarchical data using parent-child relationships."
+        },
+        {
+            q: "What is a leaf node in a tree?",
+            options: ["A node with no children", "The root node", "A node with two parents", "The largest node"],
+            answer: 0,
+            explanation: "A leaf node is a node that has no children."
+        },
+        {
+            q: "Which sorting algorithm repeatedly selects the smallest element?",
+            options: ["Bubble Sort", "Selection Sort", "Merge Sort", "Quick Sort"],
+            answer: 1,
+            explanation: "Selection Sort repeatedly selects the smallest remaining element and places it in position."
+        },
+        {
+            q: "Which sorting algorithm uses divide and conquer?",
+            options: ["Bubble Sort", "Selection Sort", "Merge Sort", "Linear Search"],
+            answer: 2,
+            explanation: "Merge Sort divides the array into smaller parts, sorts them and merges them."
+        },
+        {
+            q: "Which data structure is used to implement recursion internally?",
+            options: ["Queue", "Stack", "Graph", "Hash Table"],
+            answer: 1,
+            explanation: "Function calls and recursive calls are managed using the call stack."
+        },
+        {
+            q: "What is the worst-case time complexity of linear search?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+            answer: 2,
+            explanation: "Linear search may examine every element, resulting in O(n) time."
+        },
+        {
+            q: "Which structure consists of vertices and edges?",
+            options: ["Tree only", "Graph", "Stack", "Queue"],
+            answer: 1,
+            explanation: "A graph consists of vertices (nodes) connected by edges."
+        },
+        {
+            q: "Which data structure is commonly used to implement a priority queue efficiently?",
+            options: ["Heap", "Stack", "Linked List only", "Array only"],
+            answer: 0,
+            explanation: "A heap is commonly used to implement priority queues efficiently."
+        }
+    ],
+    aptitude: [
+        {
+            q: "What is 15% of 200?",
+            options: ["20", "25", "30", "35"],
+            answer: 2,
+            explanation: "15% of 200 = (15/100) × 200 = 30."
+        },
+        {
+            q: "Find the next number: 2, 4, 8, 16, ?",
+            options: ["20", "24", "30", "32"],
+            answer: 3,
+            explanation: "Each number is multiplied by 2. The next number is 32."
+        },
+        {
+            q: "A train travels 120 km in 2 hours. What is its speed?",
+            options: ["40 km/h", "50 km/h", "60 km/h", "70 km/h"],
+            answer: 2,
+            explanation: "Speed = Distance / Time = 120 / 2 = 60 km/h."
+        },
+        {
+            q: "What is the average of 10, 20 and 30?",
+            options: ["15", "20", "25", "30"],
+            answer: 1,
+            explanation: "Average = (10 + 20 + 30) / 3 = 20."
+        },
+        {
+            q: "If 5 pens cost ₹50, what is the cost of 1 pen?",
+            options: ["₹5", "₹10", "₹15", "₹20"],
+            answer: 1,
+            explanation: "Cost of one pen = 50 / 5 = ₹10."
+        },
+        {
+            q: "Find the simple interest on ₹1000 at 10% per year for 2 years.",
+            options: ["₹100", "₹150", "₹200", "₹250"],
+            answer: 2,
+            explanation: "Simple Interest = (Principal × Rate × Time) / 100 = ₹200."
+        },
+        {
+            q: "A number increased by 20% becomes 120. What was the original number?",
+            options: ["80", "90", "100", "110"],
+            answer: 2,
+            explanation: "120 represents 120% of the original number. Original = 120 / 1.2 = 100."
+        },
+        {
+            q: "Find the LCM of 12 and 18.",
+            options: ["24", "30", "36", "48"],
+            answer: 2,
+            explanation: "The smallest number divisible by both 12 and 18 is 36."
+        },
+        {
+            q: "Find the HCF of 24 and 36.",
+            options: ["6", "8", "12", "18"],
+            answer: 2,
+            explanation: "The greatest common factor of 24 and 36 is 12."
+        },
+        {
+            q: "If a person walks 5 km north and then 5 km south, how far is the person from the starting point?",
+            options: ["5 km", "10 km", "15 km", "0 km"],
+            answer: 3,
+            explanation: "The person returns to the starting point, so the distance from the starting point is zero."
+        },
+        {
+            q: "What is 25% of 400?",
+            options: ["50", "75", "100", "125"],
+            answer: 2,
+            explanation: "25% of 400 = (25/100) × 400 = 100."
+        },
+        {
+            q: "Find the next number: 3, 6, 9, 12, ?",
+            options: ["13", "14", "15", "18"],
+            answer: 2,
+            explanation: "The sequence increases by 3 each time. The next number is 15."
+        },
+        {
+            q: "A shopkeeper buys an item for ₹500 and sells it for ₹600. What is the profit?",
+            options: ["₹50", "₹100", "₹150", "₹200"],
+            answer: 1,
+            explanation: "Profit = Selling Price − Cost Price = ₹600 − ₹500 = ₹100."
+        },
+        {
+            q: "What is the square of 15?",
+            options: ["125", "200", "225", "250"],
+            answer: 2,
+            explanation: "15 × 15 = 225."
+        },
+        {
+            q: "If 8 workers complete a job in 6 days, how many worker-days are required?",
+            options: ["14", "24", "36", "48"],
+            answer: 3,
+            explanation: "Total worker-days = 8 × 6 = 48."
+        },
+        {
+            q: "Convert 0.75 into a percentage.",
+            options: ["7.5%", "25%", "50%", "75%"],
+            answer: 3,
+            explanation: "0.75 × 100 = 75%."
+        },
+        {
+            q: "A father is 40 years old and his son is 10 years old. What is their age difference?",
+            options: ["20 years", "25 years", "30 years", "35 years"],
+            answer: 2,
+            explanation: "Age difference = 40 − 10 = 30 years."
+        },
+        {
+            q: "What is the probability of getting a head when a fair coin is tossed once?",
+            options: ["1/4", "1/2", "1/3", "1"],
+            answer: 1,
+            explanation: "There are two equally likely outcomes, so the probability of a head is 1/2."
+        },
+        {
+            q: "Find the missing number: 5, 10, 20, 40, ?",
+            options: ["50", "60", "70", "80"],
+            answer: 3,
+            explanation: "Each number is doubled. The next number is 80."
+        },
+        {
+            q: "If 3 books cost ₹150, what is the cost of 7 books at the same rate?",
+            options: ["₹250", "₹300", "₹350", "₹400"],
+            answer: 2,
+            explanation: "One book costs ₹50. Therefore, 7 books cost 7 × 50 = ₹350."
+        }
+    ]
+
+};
+let currentQuestions = [];
+let currentSubject = "";
+let submitted = false;
+
+function shuffleArray(array) {
+    let shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+}
+function startTest() {
+    const subjectSelect = document.getElementById("subject");
+    const selectedSubject = subjectSelect.value;
+
+    if (!selectedSubject) {
+        alert("Please select a subject first!");
+        return;
+    }
+
+    currentSubject = selectedSubject;
+
+    const allQuestions = questionBank[currentSubject];
+
+    if (!allQuestions || allQuestions.length < 10) {
+        alert("At least 10 questions are required for this test.");
+        return;
+    }
+
+    const storageKey = "prepmaster_attempted_" + currentSubject;
+
+    let attemptedQuestions = JSON.parse(
+        localStorage.getItem(storageKey) || "[]"
+    );
+
+    let unseenQuestions = allQuestions.filter(
+        (question, index) => !attemptedQuestions.includes(index)
+    );
+
+    if (unseenQuestions.length < 10) {
+        attemptedQuestions = [];
+        localStorage.setItem(storageKey, JSON.stringify([]));
+        unseenQuestions = [...allQuestions];
+    }
+
+    currentQuestions = shuffleArray(unseenQuestions).slice(0, 10);
+
+    submitted = false;
+
+    document.getElementById("startArea").style.display = "none";
+    document.getElementById("resultArea").style.display = "none";
+    document.getElementById("testArea").style.display = "block";
+
+    document.getElementById("testTitle").textContent =
+        subjectSelect.options[subjectSelect.selectedIndex].text + " Mock Test";
+
+    document.getElementById("questionProgress").textContent =
+        "Question 1–10 | Total Marks: 10";
+
+    displayQuestions();
+}
+
+
+function displayQuestions() {
+    const container = document.getElementById("questionsContainer");
+
+    container.innerHTML = "";
+
+    currentQuestions.forEach((question, index) => {
+        let questionHTML = `
+            <div class="question-card">
+                <h3>Q${index + 1}. ${question.q}</h3>
+        `;
+
+        question.options.forEach((option, optionIndex) => {
+            questionHTML += `
+                <label class="option">
+                    <input type="radio"
+                           name="question${index}"
+                           value="${optionIndex}">
+                    ${option}
+                </label>
+            `;
+        });
+
+        questionHTML += `</div>`;
+
+        container.innerHTML += questionHTML;
+    });
+}
+
+
+function submitTest() {
+
+    if (submitted) {
+        return;
+    }
+
+    let score = 0;
+    let reviewHTML = "";
+
+    currentQuestions.forEach((question, index) => {
+
+        const selectedOption = document.querySelector(
+            `input[name="question${index}"]:checked`
+        );
+
+        const selectedAnswer = selectedOption
+            ? Number(selectedOption.value)
+            : -1;
+
+        const isCorrect = selectedAnswer === question.answer;
+
+        if (isCorrect) {
+            score++;
+        }
+
+        const optionLabels = document.querySelectorAll(
+            `input[name="question${index}"]`
+        );
+
+        optionLabels.forEach((input, optionIndex) => {
+
+            input.disabled = true;
+
+            const label = input.parentElement;
+
+            if (optionIndex === question.answer) {
+                label.classList.add("correct");
+            }
+
+            if (optionIndex === selectedAnswer && !isCorrect) {
+                label.classList.add("wrong");
+            }
+        });
+
+        const selectedText = selectedAnswer === -1
+            ? "Not answered"
+            : question.options[selectedAnswer];
+
+        const correctText = question.options[question.answer];
+
+        reviewHTML += `
+            <div class="question-card">
+                <h3>Q${index + 1}. ${question.q}</h3>
+
+                <p><b>Your Answer:</b> ${selectedText}</p>
+
+                <p><b>Correct Answer:</b> ${correctText}</p>
+
+                <p>
+                    <b>Result:</b>
+                    <span style="color:${isCorrect ? 'green' : 'red'}; font-weight:bold;">
+                        ${isCorrect ? 'Correct' : 'Incorrect'}
+                    </span>
+                </p>
+
+                <p class="explanation">
+                    <b>Explanation:</b> ${question.explanation}
+                </p>
+            </div>
+        `;
+    });
+
+    submitted = true;
+
+    const resultArea = document.getElementById("resultArea");
+
+    document.getElementById("scoreText").textContent =
+        "Your Score: " + score + " / 10";
+
+    document.getElementById("resultMessage").textContent =
+        "Your test is complete! Click Save My Result to record your score.";
+
+    document.getElementById("reviewContainer").innerHTML = reviewHTML;
+
+    document.getElementById("testArea").style.display = "none";
+    resultArea.style.display = "block";
+
+    const oldSaveButton = document.getElementById("saveResultButton");
+    const oldSaveStatus = document.getElementById("saveResultStatus");
+
+    if (oldSaveButton) oldSaveButton.remove();
+    if (oldSaveStatus) oldSaveStatus.remove();
+
+    const saveButton = document.createElement("button");
+
+    saveButton.id = "saveResultButton";
+    saveButton.type = "button";
+    saveButton.textContent = "Save My Result";
+
+    saveButton.style.display = "block";
+    saveButton.style.margin = "25px auto";
+    saveButton.style.padding = "14px 30px";
+    saveButton.style.background = "#7655c9";
+    saveButton.style.color = "white";
+    saveButton.style.border = "none";
+    saveButton.style.borderRadius = "10px";
+    saveButton.style.fontSize = "16px";
+    saveButton.style.fontWeight = "bold";
+    saveButton.style.cursor = "pointer";
+
+    const saveStatus = document.createElement("p");
+
+    saveStatus.id = "saveResultStatus";
+    saveStatus.style.textAlign = "center";
+    saveStatus.style.fontWeight = "bold";
+    saveStatus.style.margin = "15px";
+
+    saveStatus.textContent = "Your result has not been saved yet.";
+
+    resultArea.appendChild(saveButton);
+    resultArea.appendChild(saveStatus);
+
+    saveButton.addEventListener("click", async function () {
+
+        if (saveButton.disabled) {
+            return;
+        }
+
+        saveButton.disabled = true;
+        saveButton.textContent = "Saving...";
+
+        saveStatus.style.color = "#555";
+        saveStatus.textContent = "Please wait. Saving your result...";
+
+        try {
+
+            // Map all mock test subject codes to Flask subject names
+            const subjectKey = String(currentSubject)
+                .trim()
+                .toLowerCase();
+
+            const subjectMap = {
+                "c": "C Programming",
+                "c programming": "C Programming",
+                "python": "Python Programming",
+                "python programming": "Python Programming",
+                "java": "Java Programming",
+                "java programming": "Java Programming",
+                "sql": "SQL & DBMS",
+                "sql & dbms": "SQL & DBMS",
+                "dsa": "Data Structures",
+                "data structures": "Data Structures",
+                "aptitude": "Aptitude"
+            };
+
+            const subjectForSaving = subjectMap[subjectKey];
+
+            if (!subjectForSaving) {
+                throw new Error("Unknown subject code: " + currentSubject);
+            }
+
+            const response = await fetch("/save-test-result", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    subject: subjectForSaving,
+                    score: score,
+                    total_questions: 10
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(
+                    data.message || "Unable to save your result."
+                );
+            }
+
+            // Record attempted questions only after successful database saving
+            const storageKey =
+                "prepmaster_attempted_" + currentSubject;
+
+            let attemptedQuestions = JSON.parse(
+                localStorage.getItem(storageKey) || "[]"
+            );
+
+            currentQuestions.forEach(question => {
+
+                const questionIndex =
+                    questionBank[currentSubject].indexOf(question);
+
+                if (
+                    questionIndex !== -1 &&
+                    !attemptedQuestions.includes(questionIndex)
+                ) {
+                    attemptedQuestions.push(questionIndex);
+                }
+            });
+
+            localStorage.setItem(
+                storageKey,
+                JSON.stringify(attemptedQuestions)
+            );
+
+            saveButton.textContent = "Result Saved Successfully!";
+            saveButton.style.background = "#27834a";
+
+            saveStatus.style.color = "green";
+            saveStatus.textContent =
+                "Your score is saved! Open My Progress to view your performance.";
+
+        } catch (error) {
+
+            saveButton.disabled = false;
+            saveButton.textContent = "Try Saving Again";
+
+            saveStatus.style.color = "red";
+            saveStatus.textContent =
+                "Saving failed: " + error.message;
+
+            console.error("Save error:", error);
+        }
+    });
+
+    window.scrollTo(0, 0);
+}
+
+</script>
+</body>
+</html>
