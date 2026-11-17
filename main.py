@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import sqlite3
 import os
@@ -348,7 +349,11 @@ def logout():
     return redirect(url_for("home"))
 
 
+# INITIALIZE DATABASE ON STARTUP
+init_db()
+
+
 # RUN APPLICATION
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
+        
